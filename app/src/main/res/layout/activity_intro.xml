@@ -18,10 +18,10 @@
         android:src="@drawable/logo_white_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456">
+        app:layout_constraintVertical_bias="0.5">
 
     </ImageView>
 
@@ -29,20 +29,19 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="95.3dp"
-        android:layout_marginTop="555.3dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="555dp"
         android:layout_marginEnd="95dp"
         android:layout_marginBottom="65dp"
+        android:fontFamily="@font/nanumsquareb"
         android:letterSpacing="-0.15"
         android:text="당신을 위한 치아 관리 서비스"
         android:textColor="#ffffff"
         android:textSize="17.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,14 +51,15 @@
         android:layout_marginTop="297dp"
         android:layout_marginEnd="161dp"
         android:layout_marginBottom="320dp"
+        android:fontFamily="@font/nanumsquareeb"
         android:text="TO’S"
         android:textColor="#ffffff"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

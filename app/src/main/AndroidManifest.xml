@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TosTheme"
+        android:hardwareAccelerated="false"
         >
         <activity android:name=".LoginActivity">
-
         </activity>
         <activity android:name=".MainActivity">
         </activity>
