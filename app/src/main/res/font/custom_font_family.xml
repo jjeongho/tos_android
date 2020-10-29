@@ -29,6 +29,7 @@
         android:fontStyle="normal"
         app:font="@font/nanumsquareeb"
         app:fontStyle="normal"
+
         />
 
 
