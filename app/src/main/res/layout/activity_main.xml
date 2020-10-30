@@ -87,7 +87,7 @@
         app:srcCompat="@drawable/main_char" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/brushimageButton"
         android:layout_width="324dp"
         android:layout_height="83dp"
         android:layout_marginStart="19dp"
