@@ -16,11 +16,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
-<<<<<<< HEAD
-=======
+
     </style>
     <style name="CustomTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
         <item name="android:textColor">@color/my_date_text_color</item>
->>>>>>> main
     </style>
 </resources>

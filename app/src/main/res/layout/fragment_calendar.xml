@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-<<<<<<< HEAD
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/group_246"
-    android:fitsSystemWindows="true"
-    >
-=======
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#9ABCAE"
-
     android:fitsSystemWindows="true">
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -276,6 +266,5 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView10"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
     </androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> main
 
 </androidx.constraintlayout.widget.ConstraintLayout>
