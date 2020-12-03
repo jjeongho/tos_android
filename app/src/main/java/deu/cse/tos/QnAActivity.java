@@ -45,7 +45,10 @@ public class QnAActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qna);
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
         initHashTag();
         initCard();
     }
@@ -71,6 +74,7 @@ public class QnAActivity extends AppCompatActivity {
 
         hashAdapter = new MyHashAdapter(this, itemList, onClickItem);
         recyclerView.setAdapter(hashAdapter);
+<<<<<<< HEAD
 
         MyListDecoration decoration = new MyListDecoration();
         recyclerView.addItemDecoration(decoration);
@@ -93,6 +97,30 @@ public class QnAActivity extends AppCompatActivity {
 
         MyListDecoration decoration = new MyListDecoration();
         recyclerView.addItemDecoration(decoration);
+=======
+
+        MyListDecoration decoration = new MyListDecoration();
+        recyclerView.addItemDecoration(decoration);
+    }
+
+    private void initCard(){
+        recyclerView = findViewById(R.id.card);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        ArrayList<QnAList> itemList = new ArrayList<>();
+        itemList.add(new QnAList("q1", "a1"));
+        itemList.add(new QnAList("q2", "a2"));
+        itemList.add(new QnAList("q3", "a3"));
+        itemList.add(new QnAList("q4", "a4"));
+        itemList.add(new QnAList("q5", "a5"));
+
+        cardAdapter = new MyCardAdapter(this, itemList, onClickItem);
+        recyclerView.setAdapter(cardAdapter);
+
+        MyListDecoration decoration = new MyListDecoration();
+        recyclerView.addItemDecoration(decoration);
+>>>>>>> main
     }
 
     private View.OnClickListener onClickItem = new View.OnClickListener() {
@@ -105,4 +133,9 @@ public class QnAActivity extends AppCompatActivity {
         }
     };
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 }

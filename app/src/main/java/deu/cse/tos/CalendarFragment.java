@@ -3,6 +3,11 @@ package deu.cse.tos;
 import android.os.Build;
 import android.os.Bundle;
 
+<<<<<<< HEAD
+=======
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+>>>>>>> main
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,7 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+<<<<<<< HEAD
 
+=======
+import org.threeten.bp.LocalDate;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+>>>>>>> main
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainFragment#newInstance} factory method to
@@ -65,17 +76,35 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+<<<<<<< HEAD
 
+=======
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        MaterialCalendarView materialCalendarView = getView().findViewById(R.id.calendarView);
+        materialCalendarView.setSelectedDate(CalendarDay.today());
+
+    }
+>>>>>>> main
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         initActivity();
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
         return inflater.inflate(R.layout.fragment_calendar, container, false);
     }
 }

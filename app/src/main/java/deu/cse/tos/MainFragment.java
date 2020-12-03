@@ -1,9 +1,18 @@
 package deu.cse.tos;
 
+<<<<<<< HEAD
+=======
+import android.content.Intent;
+>>>>>>> main
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
+<<<<<<< HEAD
+=======
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+>>>>>>> main
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,6 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+<<<<<<< HEAD
+=======
+import android.widget.ImageButton;
+>>>>>>> main
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,13 +91,37 @@ public class MainFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+<<<<<<< HEAD
     }
 
 
+=======
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageButton button = (ImageButton) getView().findViewById(R.id.brushimageButton);
+        Intent testIntent = new Intent(getActivity(), AddBrushListActivity.class);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(i);
+                startActivity(testIntent);
+            }
+        });
+
+    }
+>>>>>>> main
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         initActivity();
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
