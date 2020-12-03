@@ -89,7 +89,6 @@ public class MainFragment extends Fragment {
         initActivity();
 
 
-
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
