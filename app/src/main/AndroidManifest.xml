@@ -19,6 +19,21 @@
         </activity>
         <activity android:name=".VideoActivity">
         </activity>
+        <activity android:name=".BrushListActivity">
+        </activity>
+        <activity android:name=".AddBrushListActivity">
+        </activity>
+        <activity android:name=".QnAActivity">
+        </activity>
+        <activity android:name=".CalendarActivity">
+        </activity>
+        <activity android:name=".InformationActivity">
+
+        </activity>
+        <activity android:name=".ModeActivity">
+        </activity>
+        <activity android:name=".SelfCheckActivity">
+        </activity>
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
