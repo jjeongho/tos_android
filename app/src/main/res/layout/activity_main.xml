@@ -20,12 +20,20 @@
         android:layout_marginBottom="?attr/actionBarSize">
 
 
+
         <!--    <FrameLayout-->
         <!--        android:layout_width="match_parent"-->
         <!--        android:layout_height="match_parent"-->
         <!--        android:id="@+id/FrameLayout"-->
         <!--        android:layout_marginBottom="?attr/actionBarSize" />-->
     </FrameLayout>
+    <FrameLayout
+        android:id="@+id/FrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
