@@ -1,12 +1,8 @@
 package deu.cse.tos;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,21 +11,13 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.kakao.sdk.auth.LoginClient;
-import com.kakao.sdk.auth.model.OAuthToken;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.User;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
-    private Context mContext = MainActivity.this;
-    private static final int ACTIVITY_NUM = 0;
-    private static final String TAG = "MainActivity";
-
-
-
+public class ModeActivity extends AppCompatActivity {
+    private Context mContext = ModeActivity.this;
+    private static final int ACTIVITY_NUM = 4;
+    private static final String TAG = "ModeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mode);
         setupBottomNavigationView();
 
-        ImageButton button = (ImageButton) findViewById(R.id.brushimageButton);
+        ImageButton button = (ImageButton) findViewById(R.id.imageButtonmode1);
         Intent i = new Intent(this, VideoActivity.class);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
     private void setupBottomNavigationView(){
