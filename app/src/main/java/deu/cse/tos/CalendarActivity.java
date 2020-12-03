@@ -1,14 +1,26 @@
 package deu.cse.tos;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddBrushListActivity extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity {
+    private Context mContext = CalendarActivity.this;
+    private static final int ACTIVITY_NUM = 3;
+    private static final String TAG = "CalendarActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +36,7 @@ public class AddBrushListActivity extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_brushlist);
-
+        setContentView(R.layout.activity_calendar);
 
     }
-
 }

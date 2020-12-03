@@ -1,66 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="right|center_vertical"
-    android:orientation="vertical">
+    android:background="@drawable/group_243">
 
-    <LinearLayout
-        android:id="@+id/action_oral_supplies"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/img_btn_arrow"
-            android:layout_width="0dp"
-            android:layout_height="23.8dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/arrow_chevron_big_left" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="23.8dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="8"
-            android:freezesText="false"
-            android:gravity="center"
-            android:text="@string/action_oralsupplies" />
-
-        <ImageButton
-            android:id="@+id/img_btn_menu"
-            android:layout_width="0dp"
-            android:layout_height="23.8dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:contentDescription="hamberger_menu"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/menu_hamburger" />
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_oral_supplies"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
-
-    <ImageView
-        android:id="@+id/img_btn_plus"
-        android:layout_width="31.2dp"
-        android:layout_height="0dp"
-        android:layout_gravity="right|center_vertical"
-        android:layout_weight="0.7"
-        app:srcCompat="@drawable/edit_plus_circle"
-        android:layout_marginRight="10dp"/>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

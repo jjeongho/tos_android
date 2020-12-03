@@ -61,7 +61,6 @@ public class MainFragment extends Fragment {
     }
 
     public static MainFragment newInstance(String param1, String param2) {
-
         MainFragment fragment = new MainFragment();
 
         Bundle args = new Bundle();
@@ -74,7 +73,6 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -87,9 +85,6 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         initActivity();
-
-
-
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
