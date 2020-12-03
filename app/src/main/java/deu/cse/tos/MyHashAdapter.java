@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyHashAdapter extends RecyclerView.Adapter<MyHashAdapter.ViewHolder> {
     private ArrayList<String> itemList;
     private Context context;
     private View.OnClickListener onClickItem;
 
-    public MyAdapter(Context context, ArrayList<String> itemList, View.OnClickListener onClickItem) {
+    public MyHashAdapter(Context context, ArrayList<String> itemList, View.OnClickListener onClickItem) {
         this.context = context;
         this.itemList = itemList;
         this.onClickItem = onClickItem;
@@ -26,7 +26,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         // context 와 parent.getContext() 는 같다.
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_tv, parent, false);
+                .inflate(R.layout.hash_tv, parent, false);
 
         return new ViewHolder(view);
     }

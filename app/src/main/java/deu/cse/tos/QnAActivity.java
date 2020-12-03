@@ -1,8 +1,6 @@
 package deu.cse.tos;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,8 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,8 +22,9 @@ public class QnAActivity extends AppCompatActivity {
     private Context mContext = QnAActivity.this;
     private static final int ACTIVITY_NUM = 1;
     private static final String TAG = "QnAActivity";
-    private RecyclerView listview;
-    private MyAdapter adapter;
+    private RecyclerView recyclerView;
+    private MyHashAdapter hashAdapter;
+    private MyCardAdapter cardAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +43,14 @@ public class QnAActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qna);
         setupBottomNavigationView();
 
-        init();
+        initHashTag();
+        initCard();
     }
 
-    private void init(){
-        listview = findViewById(R.id.hashtag);
+    private void initHashTag(){
+        recyclerView = findViewById(R.id.hashtag);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        listview.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<String> itemList = new ArrayList<>();
         itemList.add("0");
@@ -68,11 +66,31 @@ public class QnAActivity extends AppCompatActivity {
         itemList.add("10");
         itemList.add("testing~~~");
 
-        adapter = new MyAdapter(this, itemList, onClickItem);
-        listview.setAdapter(adapter);
+        hashAdapter = new MyHashAdapter(this, itemList, onClickItem);
+        recyclerView.setAdapter(hashAdapter);
 
         MyListDecoration decoration = new MyListDecoration();
-        listview.addItemDecoration(decoration);
+        recyclerView.addItemDecoration(decoration);
+    }
+
+    private void initCard(){
+        recyclerView = findViewById(R.id.card);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        ArrayList<QnAList> itemList = new ArrayList<>();
+        itemList.add(new QnAList("q1", "a1"));
+        itemList.add(new QnAList("q2", "a2"));
+        itemList.add(new QnAList("q3", "a3"));
+        itemList.add(new QnAList("q4", "a4"));
+        itemList.add(new QnAList("q5", "a5"));
+
+
+        cardAdapter = new MyCardAdapter(this, itemList, onClickItem);
+        recyclerView.setAdapter(cardAdapter);
+
+        MyListDecoration decoration = new MyListDecoration();
+        recyclerView.addItemDecoration(decoration);
     }
 
     private View.OnClickListener onClickItem = new View.OnClickListener() {
@@ -90,6 +108,4 @@ public class QnAActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
-
-
 }
