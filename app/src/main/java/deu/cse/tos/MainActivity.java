@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 //        initActivity();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_layout, mainFragement).commitAllowingStateLoss();
         bottomNavigationView = findViewById(R.id.navigation);
@@ -87,17 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        setupBottomNavigationView();
 
-        ImageButton button = (ImageButton) findViewById(R.id.brushimageButton);
-        Intent i = new Intent(this, VideoActivity.class);
-        Intent testIntent = new Intent(this, AddBrushListActivity.class);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //startActivity(i);
-                startActivity(testIntent);
-            }
-        });
 
 //        ImageButton button = (ImageButton) findViewById(R.id.brushimageButton);
 //        Intent i = new Intent(this, VideoActivity.class);
