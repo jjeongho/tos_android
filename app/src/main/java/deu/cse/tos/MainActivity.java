@@ -24,6 +24,7 @@ import com.kakao.sdk.user.model.User;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
@@ -60,27 +61,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_layout,mainFragement).commitAllowingStateLoss();
+        fragmentTransaction.replace(R.id.main_layout, mainFragement).commitAllowingStateLoss();
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 fragmentTransaction = fragmentManager.beginTransaction();
-                switch(item.getItemId()) {
+                switch (item.getItemId()) {
                     case R.id.callHome:
-                        fragmentTransaction.replace(R.id.main_layout,mainFragement).commitAllowingStateLoss();
+                        fragmentTransaction.replace(R.id.main_layout, mainFragement).commitAllowingStateLoss();
                         break;
                     case R.id.callQnA:
-                        fragmentTransaction.replace(R.id.main_layout,qnaFragement).commitAllowingStateLoss();
+                        fragmentTransaction.replace(R.id.main_layout, qnaFragement).commitAllowingStateLoss();
                         break;
                     case R.id.callCalendar:
-                        fragmentTransaction.replace(R.id.main_layout,calendarFragement).commitAllowingStateLoss();
+                        fragmentTransaction.replace(R.id.main_layout, calendarFragement).commitAllowingStateLoss();
                         break;
                     case R.id.callInformation:
-                        fragmentTransaction.replace(R.id.main_layout,informationFragement).commitAllowingStateLoss();
+                        fragmentTransaction.replace(R.id.main_layout, informationFragement).commitAllowingStateLoss();
                         break;
                 }
                 return false;
+            }
+        });
+
+//        setupBottomNavigationView();
+
+        ImageButton button = (ImageButton) findViewById(R.id.brushimageButton);
+        Intent i = new Intent(this, VideoActivity.class);
+        Intent testIntent = new Intent(this, AddBrushListActivity.class);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(i);
+                startActivity(testIntent);
             }
         });
 
@@ -97,12 +112,10 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-    private void setupBottomNavigationView(){
+//    private void setupBottomNavigationView() {
 //        BottomNavigationHelper.enableNavigation(mContext, bottomNavigationView);
 //        Menu menu = bottomNavigationView.getMenu();
 //        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
 //        menuItem.setChecked(true);
-    }
-
-
 }
+
