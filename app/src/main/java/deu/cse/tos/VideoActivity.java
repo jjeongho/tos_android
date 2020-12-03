@@ -32,27 +32,27 @@ public class VideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
         ImageView imageview = (ImageView) findViewById(R.id.imageView9);
         Intent i = new Intent(this, SelfCheckActivity.class);
 
-        imageview.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                startActivity(i);
-
-            }
-
-            @Override
-            public void onTouch(View view) {
-
-
-            }
-
-        });
+//        imageview.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                startActivity(i);
+//
+//            }
+//
+//            @Override
+//            public void onTouch(View view) {
+//
+//
+//            }
+//
+//        });
     }
 
 
