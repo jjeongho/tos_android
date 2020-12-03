@@ -45,7 +45,6 @@ public class QnAActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qna);
-
         initHashTag();
         initCard();
     }
@@ -104,6 +103,7 @@ public class QnAActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
 
 
 }
