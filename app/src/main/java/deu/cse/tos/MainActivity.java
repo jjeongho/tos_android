@@ -52,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton button = (ImageButton) findViewById(R.id.brushimageButton);
         Intent i = new Intent(this, VideoActivity.class);
+        Intent testIntent = new Intent(this, AddBrushListActivity.class);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(i);
-
+                //startActivity(i);
+                startActivity(testIntent);
             }
 
         });
