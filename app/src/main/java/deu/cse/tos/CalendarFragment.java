@@ -1,5 +1,6 @@
 package deu.cse.tos;
 
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -16,7 +17,10 @@ import android.view.WindowManager;
 
 import org.threeten.bp.LocalDate;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,6 +88,13 @@ public class CalendarFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         MaterialCalendarView materialCalendarView = getView().findViewById(R.id.calendarView);
         materialCalendarView.setSelectedDate(CalendarDay.today());
+        materialCalendarView.addDecorator(new TodayDecorator());
+
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+            }
+        });
 
     }
 
@@ -95,4 +106,27 @@ public class CalendarFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_calendar, container, false);
     }
+
+    private class TodayDecorator implements DayViewDecorator {
+
+        private final CalendarDay today;
+        private final Drawable backgroundDrawable;
+
+        public TodayDecorator() {
+            today = CalendarDay.today();
+            backgroundDrawable = getResources().getDrawable(R.drawable.soso);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return today.equals(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.setBackgroundDrawable(backgroundDrawable);
+        }
+    }
 }
+
+

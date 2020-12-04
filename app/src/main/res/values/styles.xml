@@ -21,4 +21,10 @@
     <style name="CustomTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
         <item name="android:textColor">@color/my_date_text_color</item>
     </style>
+    <style name="CustomWeekTextApperance" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">@color/my_week_text_color</item>
+    </style>
+    <style name="CustomHeaderTextApperance" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">@color/my_header_text_color</item>
+    </style>
 </resources>
