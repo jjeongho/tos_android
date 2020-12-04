@@ -2,12 +2,14 @@ package deu.cse.tos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     Animation topAnim, bottomAnim;
     ImageView image,image2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         KakaoSdk.init(this, "1c11ae1b9e8f2cfbeb1676908dfcd2da");
@@ -58,12 +61,35 @@ public class LoginActivity extends AppCompatActivity {
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
 
         //Hooks
-        image = findViewById(R.id.imageView2);
+        //image = findViewById(R.id.imageView2);
         image2 = findViewById(R.id.imageView);
 
 
-        image.setAnimation(bottomAnim);
+        //image.setAnimation(bottomAnim);
         image2.setAnimation(topAnim);
+
+        final LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.tooth_turn);
+        animationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                animationView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
 
 //        getHashKey();
