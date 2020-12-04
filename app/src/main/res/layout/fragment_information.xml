@@ -10,102 +10,9 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="28dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquareeb"
-                android:text="강호동"
-                android:textColor="@color/ssamocolor"
-                android:textSize="36sp" />
-
-            <TextView
-                android:id="@+id/tv_static_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquarer"
-                android:text="@string/static_text2"
-                android:textColor="@color/ssamocolor"
-                android:textSize="36sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_list_item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquareeb"
-                android:text="칫솔"
-                android:textColor="@color/ssamocolor"
-                android:textSize="36sp" />
-
-            <TextView
-                android:id="@+id/tv_static_2"
-                android:layout_width="46dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="248dp"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/nanumsquarer"
-                android:text="@string/static_text3"
-                android:textColor="@color/ssamocolor"
-                android:textSize="36sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquareeb"
-                android:text="38"
-                android:textColor="@color/ssamocolor"
-                android:textSize="36sp" />
-
-            <TextView
-                android:id="@+id/tv_static_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquarer"
-                android:text="@string/static_text4"
-                android:textColor="@color/ssamocolor"
-                android:textSize="36sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="412dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="208dp"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MainActivity"
-        tools:layout_editor_absoluteX="-3dp">
+        tools:context=".MainActivity">
 
         <Spinner
             android:id="@+id/spinner"
@@ -117,18 +24,31 @@
             android:translationY="210dp" />
 
 
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="250dp"
+        android:layout_weight="10"
+        android:fontFamily="@font/nanumsquareb"
+        android:text="이번 달 양치 횟수" />
+
+
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="370dp"
-        android:layout_height="93dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="550dp"
         android:background="@drawable/background_rounding2"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="22dp" />
+        tools:ignore="MissingConstraints" />
 
 
 

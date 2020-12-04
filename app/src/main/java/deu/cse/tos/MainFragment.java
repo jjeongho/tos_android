@@ -1,5 +1,6 @@
 package deu.cse.tos;
 
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,8 +23,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,6 +99,7 @@ public class MainFragment extends Fragment {
 
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -138,16 +140,13 @@ public class MainFragment extends Fragment {
 
             }
         });
-
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         initActivity();
-
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
-
-
+    
 }

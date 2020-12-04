@@ -1,6 +1,8 @@
 package deu.cse.tos;
 
-public class QnAList {
+import java.io.Serializable;
+
+public class QnAList implements Serializable {
     private String question;
     private String answer;
 
