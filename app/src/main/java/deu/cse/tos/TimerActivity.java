@@ -1,5 +1,7 @@
 package deu.cse.tos;
 
+import android.animation.Animator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +20,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 public class TimerActivity extends AppCompatActivity {
+
+    private LottieAnimationView animationView;
 
     ProgressBar progressBar;
     EditText time_out_min, time_out_sec;
@@ -34,10 +40,25 @@ public class TimerActivity extends AppCompatActivity {
     long pauseTime;
     long setTime;
 
+    public void init() {
+        animationView = findViewById(R.id.tooth_top);
+        animationView.setVisibility(View.INVISIBLE);
+        animationView = findViewById(R.id.tooth_front_bottom);
+        animationView.setVisibility(View.INVISIBLE);
+        animationView = findViewById(R.id.tooth_top);
+        animationView.setVisibility(View.VISIBLE);
+
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        init();
         TextView textView = (TextView) findViewById(R.id.timer_mode_txt) ;
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         progressBar = findViewById(R.id.progressBar);
@@ -50,15 +71,36 @@ public class TimerActivity extends AppCompatActivity {
                     textView.setText("양치를 완료했어요 !!") ;
                     reset();
                 }else if (time.equals("00:20")) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.INVISIBLE);
+                    animationView = findViewById(R.id.tooth_top);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
                     textView.setText("혀를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
                 }else if (time.equals("00:40")) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.INVISIBLE);
+                    animationView = findViewById(R.id.tooth_front_bottom);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
                     textView.setText("아랫니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
                 }else if (time.equals("01:00")) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.INVISIBLE);
+                    animationView = findViewById(R.id.tooth_top);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
                     textView.setText("윗니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
+
                 }else if (time.equals("01:20")) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.INVISIBLE);
+                    animationView = findViewById(R.id.tooth_front_bottom);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
                     textView.setText("어금니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
                 }else {
@@ -113,6 +155,9 @@ public class TimerActivity extends AppCompatActivity {
         btn_start = findViewById(R.id.btn_start);
         btn_reset = findViewById(R.id.btn_reset);
         btn_start.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
                 if (getEditTime() != 0) {
@@ -124,6 +169,7 @@ public class TimerActivity extends AppCompatActivity {
                     Toast.makeText(TimerActivity.this, "시간을 입력하세요", Toast.LENGTH_SHORT).show();
                     time_out_min.requestFocus();
                 }
+
             }
         }); btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +177,9 @@ public class TimerActivity extends AppCompatActivity {
                 reset();
             }
         });
+
+        //animation
+
     }
 
     public void reset() {
@@ -143,6 +192,7 @@ public class TimerActivity extends AppCompatActivity {
         btn_start.setText("시작");
         btn_reset.setEnabled(false);
         progressBar.setProgress(0);
+        init();
     }
 
     public void hideKeyboard() {
@@ -166,6 +216,7 @@ public class TimerActivity extends AppCompatActivity {
                 time_out_sec.setEnabled(false);
                 handler.sendEmptyMessage(0);
                 cur_status = RUN;
+                animationView.playAnimation();
                 break;
             case RUN:
                 handler.removeMessages(0);
@@ -173,7 +224,9 @@ public class TimerActivity extends AppCompatActivity {
                 btn_start.setText("재시작");
                 btn_reset.setEnabled(true);
                 cur_status = PAUSE;
+                animationView.pauseAnimation();
                 break;
+
             case PAUSE:
                 long now = SystemClock.elapsedRealtime();
                 baseTime += (now - pauseTime);
@@ -181,6 +234,7 @@ public class TimerActivity extends AppCompatActivity {
                 btn_reset.setEnabled(false);
                 handler.sendEmptyMessage(0);
                 cur_status = RUN;
+                animationView.playAnimation();
                 break;
         }
     }
