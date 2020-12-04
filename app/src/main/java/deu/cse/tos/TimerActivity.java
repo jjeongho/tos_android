@@ -117,7 +117,6 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (getEditTime() != 0) {
                     hideKeyboard();
-                    System.out.println("Dadadada");
                     start(cur_status);
 
                 } else {
