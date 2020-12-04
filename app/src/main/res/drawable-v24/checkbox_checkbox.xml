@@ -2,24 +2,17 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Unchecked -->
     <item android:state_checked="false">
-        <shape>
-            <stroke android:color="#c4cbd2" android:width="1dp" />
-            <corners android:radius="4dp" />
-            <solid android:color="#fff" />
-        </shape>
+    <layer-list>
+        <item android:drawable="@drawable/untick" android:top="4dp" android:right="4dp" android:bottom="4dp" android:left="4dp"/>
+    </layer-list>
     </item>
     <!-- Checked -->
     <item android:state_checked="true">
         <layer-list>
             <!-- 배경 -->
-            <item>
-                <shape>
-                    <corners android:radius="4dp" />
-                    <solid android:color="#44C4A1" />
-                </shape>
-            </item>
+
             <!-- 이미지 영역 -->
-            <item android:drawable="@drawable/tick" android:top="4dp" android:right="4dp" android:bottom="4dp" android:left="4dp" />
+            <item android:drawable="@drawable/tick" android:top="4dp" android:right="4dp" android:bottom="4dp" android:left="4dp"/>
         </layer-list>
     </item>
 </selector>
