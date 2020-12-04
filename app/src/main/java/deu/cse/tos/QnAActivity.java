@@ -85,7 +85,7 @@ public class QnAActivity extends AppCompatActivity {
 
     private void setupBottomNavigationView(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        BottomNavigationHelper.enableNavigation(mContext, bottomNavigationView);
+
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
