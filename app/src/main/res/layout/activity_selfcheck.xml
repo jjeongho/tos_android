@@ -6,130 +6,182 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
-    <CheckBox
-        android:id="@+id/checkbox1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="273dp"
-        android:background="@drawable/checkbox_checkbox"
-        android:button="@android:color/transparent"
-        android:checked="true"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="319dp" />
-
-    <CheckBox
-        android:id="@+id/checkbox2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="29dp"
-        android:background="@drawable/checkbox_checkbox"
-        android:button="@android:color/transparent"
-        android:checked="true"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="319dp" />
-
-    <CheckBox
-        android:id="@+id/checkbox3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="29dp"
-        android:background="@drawable/checkbox_checkbox"
-        android:button="@android:color/transparent"
-        android:checked="true"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox4"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="319dp" />
-
-    <CheckBox
-        android:id="@+id/checkbox4"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="29dp"
-        android:background="@drawable/checkbox_checkbox"
-        android:button="@android:color/transparent"
-        android:checked="true"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="319dp" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:fontFamily="@font/nanumsquareb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="양치를 하는데 이가 시려요."
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="278dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:fontFamily="@font/nanumsquareb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="양치를 하는데 이가 흔들려요."
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="332dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:fontFamily="@font/nanumsquareb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="양치를 하는데 이가 아파요."
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="391dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:fontFamily="@font/nanumsquareb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="양치를 하는데 피가 났어요."
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="450dp"
-        tools:ignore="MissingConstraints" />
-
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquarer"
-        android:text="양치 자가진단표"
-        android:textColor="#ff98BFBD"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="226dp" />
-    <!-- //체크박스 -->
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="276dp"
-        android:layout_height="74dp"
-        android:fontFamily="@font/nanumsquareeb"
-        android:text="강호동 님은 N 번째 양치를 완료 했어요!"
-        android:textColor="#ff98BFBD"
-        android:textSize="32sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="74dp" />
-
-    <ImageView
-        android:id="@+id/image_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="548dp"
-        android:background="@drawable/ssambutton"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="276dp"
+            android:layout_height="74dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="89dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/nanumsquareeb"
+            android:text="강호동 님은 N 번째 양치를 완료 했어요!"
+            android:textColor="#ff98BFBD"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView19"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="232dp"
+            android:fontFamily="@font/nanumsquarer"
+            android:text="양치 자가진단표"
+            android:textColor="#ff98BFBD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginEnd="189dp"
+            android:layout_marginBottom="56dp"
+            android:fontFamily="@font/nanumsquareb"
+            android:text="양치를 하는데 이가 시려요."
+            app:layout_constraintBottom_toTopOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="176dp"
+            android:fontFamily="@font/nanumsquareb"
+            android:text="양치를 하는데 이가 흔들려요."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="190dp"
+            android:fontFamily="@font/nanumsquareb"
+            android:text="양치를 하는데 이가 아파요."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="382dp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginEnd="189dp"
+            android:fontFamily="@font/nanumsquareb"
+            android:text="양치를 하는데 피가 났어요."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="467dp" />
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="161dp"
+            android:background="@drawable/ssambutton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/checkbox1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="319dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="43dp"
+            android:background="@drawable/checkbox_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            app:layout_constraintBottom_toTopOf="@+id/checkbox2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <CheckBox
+            android:id="@+id/checkbox2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/checkbox_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="322dp"
+            tools:layout_editor_absoluteY="318dp" />
+
+        <CheckBox
+            android:id="@+id/checkbox3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="319dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="51dp"
+            android:background="@drawable/checkbox_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            app:layout_constraintBottom_toTopOf="@+id/checkbox4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox1"
+            tools:ignore="MissingConstraints" />
+
+        <CheckBox
+            android:id="@+id/checkbox4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="319dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="62dp"
+            android:background="@drawable/checkbox_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox3"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- //체크박스 -->
 
     <TextView
         android:id="@+id/textView17"
