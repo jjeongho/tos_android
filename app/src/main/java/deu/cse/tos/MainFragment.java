@@ -89,7 +89,7 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton button = (ImageButton) getView().findViewById(R.id.brushimageButton);
-        Intent testIntent = new Intent(getActivity(), AddBrushListActivity.class);
+        Intent testIntent = new Intent(getActivity(), BrushListActivity.class);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

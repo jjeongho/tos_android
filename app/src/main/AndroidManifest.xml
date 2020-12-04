@@ -19,9 +19,9 @@
         </activity>
         <activity android:name=".VideoActivity">
         </activity>
-        <activity android:name=".BrushListActivity">
-        </activity>
         <activity android:name=".AddBrushListActivity">
+        </activity>
+        <activity android:name=".BrushListActivity">
         </activity>
         <activity android:name=".ShowQnAActivity">
         </activity>
