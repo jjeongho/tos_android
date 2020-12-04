@@ -19,7 +19,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -29,7 +32,8 @@ import kotlin.jvm.functions.Function2;
 
 public class LoginActivity extends AppCompatActivity {
 
-
+    Animation topAnim, bottomAnim;
+    ImageView image,image2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,67 +53,81 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ImageButton button = (ImageButton)findViewById(R.id.imageButton2);
         Intent i = new Intent(this,MainActivity.class);
-        getHashKey();
+
+        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
+        //Hooks
+        image = findViewById(R.id.imageView2);
+        image2 = findViewById(R.id.imageView);
+
+
+        image.setAnimation(bottomAnim);
+        image2.setAnimation(topAnim);
+
+
+//        getHashKey();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+                startActivity(i);
 
-                if (LoginClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
-                    LoginClient.getInstance().loginWithKakaoTalk(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
-                        @Override
-                        public Unit invoke(OAuthToken token, Throwable error) {
-                            if (error != null) {
-                                Log.e("TAG", "로그인 실패", error);
-                            } else {
-                                Log.d("TAG", "로그인 성공");
-                                startActivity(i);
-
-                                // 사용자 정보 요청
-                                UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-                                    @Override
-                                    public Unit invoke(User user, Throwable error) {
-                                        if (error != error) {
-                                            Log.e("TAG", "사용자 정보 요청 실패", error);
-                                        } else {
-                                            Log.i("TAG", user.toString());
-                                        }
-                                        return null;
-                                    }
-                                });
-                            }
-                            return null;
-                        }
-                    });
-                } else {
-                    LoginClient.getInstance().loginWithKakaoAccount(LoginActivity.this,  new Function2<OAuthToken, Throwable, Unit>() {
-                        @Override
-                        public Unit invoke(OAuthToken token, Throwable error) {
-                            if (error != null) {
-                                Log.e("TAG", "로그인 실패", error);
-                            } else {
-                                Log.d("TAG", "로그인 성공");
-                                startActivity(i);
-
-                                // 사용자 정보 요청
-                                UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-                                    @Override
-                                    public Unit invoke(User user, Throwable error) {
-                                        if (error != error) {
-                                            Log.e("TAG", "사용자 정보 요청 실패", error);
-                                        } else {
-                                            Log.i("TAG", user.toString());
-                                        }
-                                        return null;
-                                    }
-                                });
-                            }
-                            return null;
-                        }
-                    });
-                }
-                
+//                if (LoginClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
+//                    LoginClient.getInstance().loginWithKakaoTalk(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
+//                        @Override
+//                        public Unit invoke(OAuthToken token, Throwable error) {
+//                            if (error != null) {
+//                                Log.e("TAG", "로그인 실패", error);
+//                            } else {
+//                                Log.d("TAG", "로그인 성공");
+//                                startActivity(i);
+//
+//                                // 사용자 정보 요청
+//                                UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+//                                    @Override
+//                                    public Unit invoke(User user, Throwable error) {
+//                                        if (error != error) {
+//                                            Log.e("TAG", "사용자 정보 요청 실패", error);
+//                                        } else {
+//                                            Log.i("TAG", user.toString());
+//                                        }
+//                                        return null;
+//                                    }
+//                                });
+//                            }
+//                            return null;
+//                        }
+//                    });
+//                } else {
+//                    LoginClient.getInstance().loginWithKakaoAccount(LoginActivity.this,  new Function2<OAuthToken, Throwable, Unit>() {
+//                        @Override
+//                        public Unit invoke(OAuthToken token, Throwable error) {
+//                            if (error != null) {
+//                                Log.e("TAG", "로그인 실패", error);
+//                            } else {
+//                                Log.d("TAG", "로그인 성공");
+//                                startActivity(i);
+//
+//                                // 사용자 정보 요청
+//                                UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+//                                    @Override
+//                                    public Unit invoke(User user, Throwable error) {
+//                                        if (error != error) {
+//                                            Log.e("TAG", "사용자 정보 요청 실패", error);
+//                                        } else {
+//                                            Log.i("TAG", user.toString());
+//                                        }
+//                                        return null;
+//                                    }
+//                                });
+//                            }
+//                            return null;
+//                        }
+//                    });
+//                }
+//
             }
         });
 
@@ -126,15 +144,15 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("KeyHash", "KeyHash:null");
 
         for (Signature signature : packageInfo.signatures) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA");
-            md.update(signature.toByteArray());
-            Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("KeyHash", "Unable to get MessageDigest. signature=" + signature, e);
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            } catch (NoSuchAlgorithmException e) {
+                Log.e("KeyHash", "Unable to get MessageDigest. signature=" + signature, e);
+            }
         }
     }
-}
 
 
 
