@@ -17,45 +17,25 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <LinearLayout
-            android:id="@+id/qna_bar"
+        <androidx.appcompat.widget.Toolbar
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/img_btn_arrow"
-                android:layout_width="0dp"
-                android:layout_height="23.8dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/arrow_chevron_big_left" />
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="23.8dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="8"
-                android:freezesText="false"
-                android:gravity="center"
-                android:text="@string/qna_name" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:id="@+id/action_bar_title_text"
+                android:text="@string/qna_name">
+            </TextView>
 
-            <ImageButton
-                android:id="@+id/img_btn_menu"
-                android:layout_width="0dp"
-                android:layout_height="23.8dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:contentDescription="hamburger_menu"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/menu_hamburger" />
-
-        </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
+            android:id="@+id/tv_question_intent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -76,6 +56,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_answer_intent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
