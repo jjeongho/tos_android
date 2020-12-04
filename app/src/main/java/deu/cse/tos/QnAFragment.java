@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,10 @@ public class QnAFragment extends Fragment {
     private MyCardAdapter cardAdapter;
     private Context context;
     private Intent intent;
+    private Intent qnaIntent;
+
+    private ArrayList<String> hashList = new ArrayList<>();
+    private ArrayList<QnAList> qnaList = new ArrayList<>();
 
     public QnAFragment() {
         // Required empty public constructor
@@ -94,6 +99,7 @@ public class QnAFragment extends Fragment {
         // Inflate the layout for this fragment
         initActivity();
         this.intent = new Intent(getActivity(), ShowQnAActivity.class);
+        this.qnaIntent = new Intent(getActivity(), ShowQnAActivity.class);
         this.context = container.getContext();
         return inflater.inflate(R.layout.fragment_qna, container, false);
     }
@@ -110,21 +116,20 @@ public class QnAFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<String> itemList = new ArrayList<>();
-        itemList.add("0");
-        itemList.add("1");
-        itemList.add("2");
-        itemList.add("3");
-        itemList.add("4");
-        itemList.add("5");
-        itemList.add("6");
-        itemList.add("7");
-        itemList.add("8");
-        itemList.add("9");
-        itemList.add("10");
-        itemList.add("testing~~~");
+        hashList.add("0");
+        hashList.add("1");
+        hashList.add("2");
+        hashList.add("3");
+        hashList.add("4");
+        hashList.add("5");
+        hashList.add("6");
+        hashList.add("7");
+        hashList.add("8");
+        hashList.add("9");
+        hashList.add("10");
+        hashList.add("testing~~~");
 
-        hashAdapter = new MyHashAdapter(this.context, itemList, onClickItem);
+        hashAdapter = new MyHashAdapter(this.context, hashList, onClickHash);
         recyclerView.setAdapter(hashAdapter);
 
         MyListDecoration decoration = new MyListDecoration();
@@ -136,27 +141,38 @@ public class QnAFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<QnAList> itemList = new ArrayList<>();
-        itemList.add(new QnAList("q1", "a1"));
-        itemList.add(new QnAList("q2", "a2"));
-        itemList.add(new QnAList("q3", "a3"));
-        itemList.add(new QnAList("q4", "a4"));
-        itemList.add(new QnAList("q5", "a5"));
+        qnaList.add(new QnAList("q1", "a1"));
+        qnaList.add(new QnAList("q2", "a2"));
+        qnaList.add(new QnAList("q3", "a3"));
+        qnaList.add(new QnAList("q4", "a4"));
+        qnaList.add(new QnAList("q5", "a5"));
 
-        cardAdapter = new MyCardAdapter(this.context, itemList, onClickItem);
+        cardAdapter = new MyCardAdapter(this.context, qnaList);
         recyclerView.setAdapter(cardAdapter);
 
         MyListDecoration decoration = new MyListDecoration();
         recyclerView.addItemDecoration(decoration);
     }
 
-    private View.OnClickListener onClickItem = new View.OnClickListener() {
+    private View.OnClickListener onClickHash = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             String str = (String) v.getTag();
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
 
             startActivity(intent);
+        }
+    };
+
+    private CardView.OnClickListener onClickQnA = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            String str = (String) v.getTag();
+            Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+
+//            qnaIntent.putExtra("question", str);
+//            startActivity(qnaIntent);
         }
     };
 
