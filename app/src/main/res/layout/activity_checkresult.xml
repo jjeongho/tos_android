@@ -5,31 +5,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="28dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquareeb"
+                android:text="강호동"
+                android:textColor="@color/ssamocolor"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/tv_static_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="@string/static_text2"
+                android:textColor="@color/ssamocolor"
+                android:textSize="36sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_list_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquareeb"
+                android:text="칫솔"
+                android:textColor="@color/ssamocolor"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/tv_static_2"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="248dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="@string/static_text3"
+                android:textColor="@color/ssamocolor"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquareeb"
+                android:text="38"
+                android:textColor="@color/ssamocolor"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/tv_static_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="@string/static_text4"
+                android:textColor="@color/ssamocolor"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="371dp"
+        android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="548dp"
         android:background="@drawable/ssambutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="46dp"
+        android:layout_height="31dp"
         android:layout_gravity="center"
         android:layout_marginStart="375dp"
-        android:layout_marginTop="580dp"
+        android:layout_marginTop="572dp"
         android:layout_marginEnd="300dp"
         android:fontFamily="@font/nanumsquareeb"
         android:text="확인"
         android:textColor="#ffffffff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -53,18 +143,6 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView18"
-        android:layout_width="276dp"
-        android:layout_height="74dp"
-        android:fontFamily="@font/nanumsquareeb"
-        android:text="강호동 님은 N 번째 양치를 완료 했어요!"
-        android:textColor="#ff98BFBD"
-        android:textSize="32sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="74dp" />
-
-    <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,18 +152,5 @@
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="224dp"
         tools:ignore="MissingConstraints" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/cardview_light_background"
-        app:itemIconTint="@color/themecolor"
-        app:itemTextColor="@color/themecolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:menu="@menu/menu_bottomnavigationview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
