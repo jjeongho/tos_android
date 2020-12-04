@@ -12,7 +12,7 @@ public interface RetrofitService {
 
 
     @FormUrlEncoded
-    @POST("register/user")
+    @POST("auth/info")
     Call<UserDTO> postUserResult(@FieldMap HashMap<String, Object> param);
 
 }
