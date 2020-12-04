@@ -1,7 +1,5 @@
 package deu.cse.tos;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,40 +12,19 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TimerActivity extends AppCompatActivity {
-    private int state;
-
-
-    public void setState(int state){
-        this.state = state;
-    }
-
-    public int getState(){
-        return state;
-    }
-
 
     ProgressBar progressBar;
     EditText time_out_min, time_out_sec;
     Button btn_start, btn_reset;
     InputMethodManager imm;
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            String time = getTimeOut();
-            if (time.equals("00:00")) {
-                Toast.makeText(TimerActivity.this, "양치를 완료했어요 !!", Toast.LENGTH_LONG).show();
-                reset();
-            } else {
-                handler.sendEmptyMessage(0);
-            }
-        }
-
-    };
+    Handler handler;
     final static int INIT = 0;
     final static int RUN = 1;
     final static int PAUSE = 2;
@@ -61,21 +38,49 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        TextView textView = (TextView) findViewById(R.id.timer_mode_txt) ;
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         progressBar = findViewById(R.id.progressBar);
         time_out_min = findViewById(R.id.time_out_min);
-        time_out_min.addTextChangedListener(new TextWatcher() {
 
+        handler = new Handler() {
+            public void handleMessage(Message msg) {
+                String time = getTimeOut();
+                if (time.equals("00:00")) {
+                    textView.setText("양치를 완료했어요 !!") ;
+                    reset();
+                }else if (time.equals("00:20")) {
+                    textView.setText("혀를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("00:40")) {
+                    textView.setText("아랫니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("01:00")) {
+                    textView.setText("윗니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("01:20")) {
+                    textView.setText("어금니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else {
+                    handler.sendEmptyMessage(0);
+                }
+            }
+
+        };
+
+
+        time_out_min.addTextChangedListener(new TextWatcher() {
 
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (time_out_min.hasFocus() && getEditTime() != 0) {
-                    setState(0);
+
                     setTime();
                     Log.d("ProgressTest", "setTime = " + setTime);
 
@@ -90,12 +95,12 @@ public class TimerActivity extends AppCompatActivity {
         time_out_sec.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (time_out_sec.hasFocus() && getEditTime() != 0) {
-                    setState(0);
                     setTime();
                     Log.d("ProgressTest", "setTime = " + setTime);
                 }
@@ -112,8 +117,9 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (getEditTime() != 0) {
                     hideKeyboard();
-                    setState(1);
+                    System.out.println("Dadadada");
                     start(cur_status);
+
                 } else {
                     Toast.makeText(TimerActivity.this, "시간을 입력하세요", Toast.LENGTH_SHORT).show();
                     time_out_min.requestFocus();
@@ -130,10 +136,9 @@ public class TimerActivity extends AppCompatActivity {
     public void reset() {
         handler.removeCallbacksAndMessages(null);
         cur_status = INIT;
-        setState(0);
-        time_out_min.setText("00");
+        time_out_min.setText("03");
         time_out_min.setEnabled(true);
-        time_out_sec.setText("00");
+        time_out_sec.setText("30");
         time_out_sec.setEnabled(true);
         btn_start.setText("시작");
         btn_reset.setEnabled(false);
@@ -201,16 +206,11 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     public void setTime() {
-        int i = getState();
+
+        //setTime = Long.parseLong("03") * 1000 * 60 + Long.parseLong("30") * 1000;
 
 
-        setTime = Long.parseLong("03") * 1000 * 60 + Long.parseLong("30") * 1000;
-
-
-            setTime = Long.parseLong(time_out_min.getText().toString()) * 1000 * 60 + Long.parseLong(time_out_sec.getText().toString()) * 1000;
-
-
-            //setTime = Long.parseLong(time_out_min.getText().toString()) * 1000 * 60 + Long.parseLong(time_out_sec.getText().toString()) * 1000;
+        setTime = Long.parseLong(time_out_min.getText().toString()) * 1000 * 60 + Long.parseLong(time_out_sec.getText().toString()) * 1000;
 
         progressBar.setMax((int) setTime);
     }
