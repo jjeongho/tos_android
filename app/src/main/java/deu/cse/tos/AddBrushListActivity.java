@@ -5,20 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 
 public class AddBrushListActivity extends AppCompatActivity {
+    RadioButton rb1, rb2, rb3, rb4;
+    RadioGroup rg;
 
-    private RecyclerView recyclerView;
-    private OralSuppliesAdapter oralSuppliesAdapter;
-    private ArrayList<OralSupplies> items;
-    private OralSupplies oralSupplies;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Window window = getWindow();
@@ -34,36 +31,39 @@ public class AddBrushListActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addbrushlist);
-        items = new ArrayList<>();
-        oralSuppliesAdapter = new OralSuppliesAdapter(this, items, onClickItem);
-        createRecyclerView();
-        // OralSupplies 객체 생성
-        items.add(new OralSupplies(38, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(39, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(40, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(41, "치약", "2020년 12월 25일"));
-        items.add(new OralSupplies(42, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(45, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(49, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(34, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(38, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(12, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(190, "칫솔", "2020년 12월 25일"));
-        oralSuppliesAdapter.notifyDataSetChanged();
-    }
+        rg = (RadioGroup) findViewById(R.id.radioGroup);
+        rb1 = (RadioButton) findViewById(R.id.radioButton1);
+        rb2 = (RadioButton) findViewById(R.id.radioButton2);
+        rb3 = (RadioButton) findViewById(R.id.radioButton3);
+        rb4 = (RadioButton) findViewById(R.id.radioButton4);
 
-    private View.OnClickListener onClickItem = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-            Toast.makeText(AddBrushListActivity.this, v.getTag().toString(), Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void createRecyclerView(){
-        recyclerView = findViewById(R.id.rv_oral_supplies);
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(oralSuppliesAdapter);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                rb1.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                rb2.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                rb3.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                rb4.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                switch (i){
+                    case R.id.radioButton1:
+                        Toast.makeText(AddBrushListActivity.this, rb1.getTag().toString(), Toast.LENGTH_LONG).show();
+                        rb1.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case R.id.radioButton2:
+                        Toast.makeText(AddBrushListActivity.this, rb2.getTag().toString(), Toast.LENGTH_LONG).show();
+                        rb2.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case R.id.radioButton3:
+                        Toast.makeText(AddBrushListActivity.this, rb3.getTag().toString(), Toast.LENGTH_LONG).show();
+                        rb3.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case R.id.radioButton4:
+                        Toast.makeText(AddBrushListActivity.this, rb4.getTag().toString(), Toast.LENGTH_LONG).show();
+                        rb4.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                }
+            }
+        });
     }
 }

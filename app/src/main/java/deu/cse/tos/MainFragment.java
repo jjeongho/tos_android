@@ -9,13 +9,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import java.util.HashMap;
 
 
 /**
@@ -85,6 +92,30 @@ public class MainFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("113.198.235.232:3000")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+//        HashMap<String, Object> input = new HashMap<>();
+//
+//        input.put("hash_key",UserAccount.getInstance().getHash_key());
+//        retrofitService.postUserResult(input).enqueue(new Callback<UserDTO>() {
+//            @Override
+//            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+//                if(response.isSuccessful()) {
+//                    UserDTO data = response.body();
+//                    Log.d("UserDTO",data.toString());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserDTO> call, Throwable t) {
+//
+//            }
+//        });
+
+
     }
 
 
@@ -92,9 +123,10 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton button = (ImageButton) getView().findViewById(R.id.brushimageButton);
-        Intent testIntent = new Intent(getActivity(), AddBrushListActivity.class);
+        Intent testIntent = new Intent(getActivity(), BrushListActivity.class);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
                 //startActivity(i);
                 startActivity(testIntent);
