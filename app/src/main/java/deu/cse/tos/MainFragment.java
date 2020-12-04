@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import java.util.HashMap;
 
 
@@ -92,28 +93,8 @@ public class MainFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("113.198.235.232:3000")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-//        HashMap<String, Object> input = new HashMap<>();
-//
-//        input.put("hash_key",UserAccount.getInstance().getHash_key());
-//        retrofitService.postUserResult(input).enqueue(new Callback<UserDTO>() {
-//            @Override
-//            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
-//                if(response.isSuccessful()) {
-//                    UserDTO data = response.body();
-//                    Log.d("UserDTO",data.toString());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<UserDTO> call, Throwable t) {
-//
-//            }
-//        });
+
+
 
 
     }
@@ -133,6 +114,32 @@ public class MainFragment extends Fragment {
             }
         });
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://113.198.235.232:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+        HashMap<String, Object> input = new HashMap<>();
+
+        input.put("hash_key",UserAccount.getInstance().getHash_key());
+        retrofitService.postUserResult(input).enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if(response.isSuccessful()) {
+                    UserDTO data = response.body();
+                    TextView textview3 = getActivity().findViewById(R.id.textView3);
+                    TextView textview4 = getActivity().findViewById(R.id.textView4);
+
+                    textview3.setText(data.getNickname());
+                    textview4.setText("Level "+data.getLevel());
+                    Log.d("UserDTO",data.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
