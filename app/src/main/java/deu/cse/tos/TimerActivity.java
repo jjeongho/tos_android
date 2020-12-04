@@ -42,6 +42,8 @@ public class TimerActivity extends AppCompatActivity {
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         progressBar = findViewById(R.id.progressBar);
         time_out_min = findViewById(R.id.time_out_min);
+        start();
+
 
         handler = new Handler() {
             public void handleMessage(Message msg) {
@@ -49,21 +51,45 @@ public class TimerActivity extends AppCompatActivity {
                 if (time.equals("00:00")) {
                     textView.setText("양치를 완료했어요 !!") ;
                     reset();
-                }else if (time.equals("00:20")) {
-                    textView.setText("혀를 20초 동안 닦으세요 !!") ;
+                }else if (time.equals("00:10")) {
+                    textView.setText("혀를 10초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                }else if (time.equals("00:40")) {
-                    textView.setText("아랫니를 20초 동안 닦으세요 !!") ;
+                }else if (time.equals("00:30")) {
+                    textView.setText("앞니의 안쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                }else if (time.equals("01:00")) {
+                }else if (time.equals("00:50")) {
                     textView.setText("윗니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                }else if (time.equals("01:20")) {
-                    textView.setText("어금니를 20초 동안 닦으세요 !!") ;
+                }else if (time.equals("01:10")) {
+                    textView.setText("아랫니 치아 안쪽 부분 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("01:30")) {
+                    textView.setText("아랫니 앞니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("01:50")) {
+                    textView.setText("아랫니 어금니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("02:10")) {
+                    textView.setText("씹는쪽을 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("02:30")) {
+                    textView.setText("앞니 안쪽을 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("02:50")) {
+                    textView.setText("윗니 안쪽을 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("03:10")) {
+                    textView.setText("윗니 앞니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("03:30")) {
+                    textView.setText("윗니 어금니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
                 }else {
                     handler.sendEmptyMessage(0);
                 }
+
+
+
             }
 
         };
@@ -71,19 +97,15 @@ public class TimerActivity extends AppCompatActivity {
 
         time_out_min.addTextChangedListener(new TextWatcher() {
 
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (time_out_min.hasFocus() && getEditTime() != 0) {
-
                     setTime();
                     Log.d("ProgressTest", "setTime = " + setTime);
-
                 }
             }
 
@@ -115,7 +137,7 @@ public class TimerActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getEditTime() != 0) {
+                if (getEditTime()!= 0) {
                     hideKeyboard();
                     start(cur_status);
 
@@ -205,13 +227,14 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     public void setTime() {
-
-        //setTime = Long.parseLong("03") * 1000 * 60 + Long.parseLong("30") * 1000;
-
-
-        setTime = Long.parseLong(time_out_min.getText().toString()) * 1000 * 60 + Long.parseLong(time_out_sec.getText().toString()) * 1000;
-
+        setTime = Long.parseLong("03") * 1000 * 60 + Long.parseLong("30") * 1000;
+        //setTime = Long.parseLong(time_out_min.getText().toString()) * 1000 * 60 + Long.parseLong(time_out_sec.getText().toString()) * 1000;
         progressBar.setMax((int) setTime);
+    }
+
+    public void start(){
+            setTime();
+            Log.d("ProgressTest", "setTime = " + setTime);
     }
 }
 
