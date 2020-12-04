@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_layout,mainFragement).commitAllowingStateLoss();
         bottomNavigationView = findViewById(R.id.navigation);
+        Intent i = new Intent(this, ModeActivity.class);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.callInformation:
                         fragmentTransaction.replace(R.id.main_layout,informationFragement).commitAllowingStateLoss();
+                        break;
+                    case R.id.callBrush:
+
+                        startActivity(i);
                         break;
                 }
                 return false;
