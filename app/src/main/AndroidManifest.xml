@@ -23,11 +23,9 @@
         </activity>
         <activity android:name=".AddBrushListActivity">
         </activity>
-<<<<<<< HEAD
         <activity android:name=".TimerActivity">
-=======
+        </activity>
         <activity android:name=".ShowQnAActivity">
->>>>>>> c6365905da89de843941b1f0c2021276b56480c6
         </activity>
 
         <activity android:name=".ModeActivity">
