@@ -13,15 +13,8 @@ public class UserDTO {
     private String created_at;
     // @SerializedName으로 일치시켜 주지않을 경우엔 클래스 변수명이 일치해야함
 
-
     @SerializedName("nickname")
     private String nickname;
-
-    @SerializedName("profile_image")
-    private String profile_image;
-
-    @SerializedName("thumbnail_image")
-    private String thumbnail_image;
 
     @SerializedName("status")
     private String status;
@@ -63,22 +56,6 @@ public class UserDTO {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public String getProfile_image() {
-        return profile_image;
-    }
-
-    public void setProfile_image(String profile_image) {
-        this.profile_image = profile_image;
-    }
-
-    public String getThumbnail_image() {
-        return thumbnail_image;
-    }
-
-    public void setThumbnail_image(String thumbnail_image) {
-        this.thumbnail_image = thumbnail_image;
     }
 
     public String getStatus() {
@@ -135,8 +112,6 @@ public class UserDTO {
                 "hash_key='" + hash_key + '\'' +
                 ", created_at='" + created_at + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", profile_image='" + profile_image + '\'' +
-                ", thumbnail_image='" + thumbnail_image + '\'' +
                 ", status='" + status + '\'' +
                 ", age='" + age + '\'' +
                 ", gender='" + gender + '\'' +

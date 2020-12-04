@@ -148,8 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                                                                 HashMap<String, Object> input = new HashMap<>();
                                                                 input.put("hash_key",UserAccount.getInstance().getHash_key().toString());
                                                                 input.put("nickname",user.getKakaoAccount().getProfile().getNickname().toString());
-                                                                input.put("profile_image",user.getKakaoAccount().getProfile().getProfileImageUrl().toString());
-                                                                input.put("thumbnail_image",user.getKakaoAccount().getProfile().getThumbnailImageUrl().toString());
                                                                 if(user.getKakaoAccount().getGender().toString() == "FEMALE")
                                                                     input.put("gender",0);
                                                                 else
