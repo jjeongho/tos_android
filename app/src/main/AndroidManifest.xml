@@ -23,13 +23,13 @@
         </activity>
         <activity android:name=".AddBrushListActivity">
         </activity>
-        <activity android:name=".QnAActivity">
+<<<<<<< HEAD
+        <activity android:name=".TimerActivity">
+=======
+        <activity android:name=".ShowQnAActivity">
+>>>>>>> c6365905da89de843941b1f0c2021276b56480c6
         </activity>
-        <activity android:name=".CalendarActivity">
-        </activity>
-        <activity android:name=".InformationActivity">
 
-        </activity>
         <activity android:name=".ModeActivity">
         </activity>
         <activity android:name=".SelfCheckActivity">
