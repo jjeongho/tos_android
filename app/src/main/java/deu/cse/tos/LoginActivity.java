@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getHashKey();
         KakaoSdk.init(this, "1c11ae1b9e8f2cfbeb1676908dfcd2da");
         init_activity();
         super.onCreate(savedInstanceState);

@@ -20,7 +20,7 @@ public class IntroActivity extends AppCompatActivity {
             Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
             Intent intentNotLogin = new Intent(getApplicationContext(), NotLoginActivity.class);
             startActivity(intentLogin); // 다음화면으로 넘어가기
-//            startActivity(intentNotLogin);
+            //startActivity(intentNotLogin);
             finish(); // Activity 화면 제거
         }
     };
