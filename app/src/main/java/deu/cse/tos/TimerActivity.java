@@ -132,17 +132,6 @@ public class TimerActivity extends AppCompatActivity {
                 }else if (time.equals("02:30")) {
                     textView.setText("앞니 안쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-
-                }else if (time.equals("02:50")) {
-                    textView.setText("윗니 안쪽을 20초 동안 닦으세요 !!") ;
-                    handler.sendEmptyMessage(0);
-                }else if (time.equals("03:10")) {
-                    textView.setText("윗니 앞니를 20초 동안 닦으세요 !!") ;
-                    handler.sendEmptyMessage(0);
-                }else if (time.equals("03:30")) {
-                    textView.setText("윗니 어금니를 20초 동안 닦으세요 !!") ;
-
-                }else if (time.equals("00:20")) {
                     animationView.pauseAnimation();
                     animationView.setVisibility(View.INVISIBLE);
                     animationView = findViewById(R.id.tooth_top);
@@ -173,7 +162,6 @@ public class TimerActivity extends AppCompatActivity {
                     animationView = findViewById(R.id.tooth_front_bottom);
                     animationView.setVisibility(View.VISIBLE);
                     animationView.playAnimation();
-
                 }else {
                     handler.sendEmptyMessage(0);
                 }
