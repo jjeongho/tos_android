@@ -31,13 +31,13 @@ public class VideoActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, SelfCheckActivity.class);
         TextView textView = (TextView) findViewById(R.id.video_mode_txt);
-        Uri uri = Uri.parse("android.resource://deu.cse.tos/" + R.raw.video);
+        Uri uri = Uri.parse("android.resource://deu.cse.tos/" + R.raw.test_video);
         VideoView videoView = (VideoView) findViewById(R.id.videoview);
         videoView.setVideoURI(uri);
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             public void onPrepared(MediaPlayer mp) {
-                textView.setText("양치를 시작합니다!!");
+                textView.setText("양치를  진행하세요 !!");
                 videoView.start();           // start the video
                 videoView.setVisibility(View.VISIBLE);
 
@@ -48,7 +48,7 @@ public class VideoActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                textView.setText("양치가 끝났어요 !!");
+                textView.setText("양치가 끝났습니다 !!");
                 startActivity(i);
             }
         });
@@ -80,7 +80,7 @@ public class VideoActivity extends AppCompatActivity {
 
         } ;
 
-        t.schedule(tt, 10, 120);
+        t.schedule(tt, 10, 85);
 
     }
 
