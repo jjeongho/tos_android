@@ -104,7 +104,7 @@ public class TimerActivity extends AppCompatActivity {
                     handler.sendEmptyMessage(0);
                 }else if (time.equals("03:30")) {
                     textView.setText("윗니 어금니를 20초 동안 닦으세요 !!") ;
-=======
+
                 }else if (time.equals("00:20")) {
                     animationView.pauseAnimation();
                     animationView.setVisibility(View.INVISIBLE);
@@ -137,7 +137,6 @@ public class TimerActivity extends AppCompatActivity {
                     animationView.setVisibility(View.VISIBLE);
                     animationView.playAnimation();
                     textView.setText("어금니를 20초 동안 닦으세요 !!") ;
->>>>>>> 903c48b03d39679f9ce9ae56ffae7c03d5279040
                     handler.sendEmptyMessage(0);
                 }else {
                     handler.sendEmptyMessage(0);
