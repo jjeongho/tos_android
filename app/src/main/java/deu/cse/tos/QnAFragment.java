@@ -2,21 +2,32 @@ package deu.cse.tos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.security.keystore.KeyNotYetValidException;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -25,7 +36,7 @@ import java.util.ArrayList;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QnAFragment extends Fragment {
+public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,8 +52,17 @@ public class QnAFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyHashAdapter hashAdapter;
     private MyCardAdapter cardAdapter;
+    private SwipeRefreshLayout swipeRefreshView;
+    private ImageButton btnSearch;
+    private EditText searchEdit;
+
     private Context context;
     private Intent intent;
+    private Intent qnaIntent;
+
+    private ArrayList<String> hashList = new ArrayList<>();
+    private ArrayList<QnAList> qnaList = new ArrayList<>();
+    private String searchData;
 
     public QnAFragment() {
         // Required empty public constructor
@@ -86,23 +106,75 @@ public class QnAFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+//        initQnAList();
+//        initHashTagList();
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_qna, container, false);
+
         initActivity();
+
         this.intent = new Intent(getActivity(), ShowQnAActivity.class);
+        this.qnaIntent = new Intent(getActivity(), ShowQnAActivity.class);
         this.context = container.getContext();
-        return inflater.inflate(R.layout.fragment_qna, container, false);
+        this.swipeRefreshView = view.findViewById(R.id.refresh);
+        this.swipeRefreshView.setOnRefreshListener(this);
+        this.recyclerView = view.findViewById(R.id.hashtag);
+        this.searchEdit = (EditText) view.findViewById(R.id.search_text);
+        this.btnSearch = (ImageButton) view.findViewById(R.id.btn_search_question);
+        this.btnSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                searchData = searchEdit.getText().toString();
+                if (searchData != null) {
+                    Toast.makeText(context, searchData, Toast.LENGTH_SHORT).show();
+                    onRefresh();
+                }
+            }
+        });
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        qnaList.add(new QnAList("q1", "a1"));
+        qnaList.add(new QnAList("q2", "a2"));
+        qnaList.add(new QnAList("q3", "a3"));
+        qnaList.add(new QnAList("q4", "a4"));
+        qnaList.add(new QnAList("q5", "a5"));
+
+        hashList.add("q1");
+        hashList.add("q2");
+        hashList.add("q3");
+        hashList.add("testing~~~");
+
         initHashTag(view);
         initCard(view);
+    }
+
+    private void initQnAList(){
+        qnaList.add(new QnAList("q1", "a1"));
+        qnaList.add(new QnAList("q2", "a2"));
+        qnaList.add(new QnAList("q3", "a3"));
+        qnaList.add(new QnAList("q4", "a4"));
+        qnaList.add(new QnAList("q5", "a5"));
+    }
+
+    private void initHashTagList(){
+        hashList.add("q1");
+        hashList.add("q2");
+        hashList.add("q3");
+        hashList.add("testing~~~");
     }
 
     private void initHashTag(View view){
@@ -110,21 +182,7 @@ public class QnAFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<String> itemList = new ArrayList<>();
-        itemList.add("0");
-        itemList.add("1");
-        itemList.add("2");
-        itemList.add("3");
-        itemList.add("4");
-        itemList.add("5");
-        itemList.add("6");
-        itemList.add("7");
-        itemList.add("8");
-        itemList.add("9");
-        itemList.add("10");
-        itemList.add("testing~~~");
-
-        hashAdapter = new MyHashAdapter(this.context, itemList, onClickItem);
+        hashAdapter = new MyHashAdapter(this.context, hashList, onClickHash);
         recyclerView.setAdapter(hashAdapter);
 
         MyListDecoration decoration = new MyListDecoration();
@@ -136,28 +194,39 @@ public class QnAFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayList<QnAList> itemList = new ArrayList<>();
-        itemList.add(new QnAList("q1", "a1"));
-        itemList.add(new QnAList("q2", "a2"));
-        itemList.add(new QnAList("q3", "a3"));
-        itemList.add(new QnAList("q4", "a4"));
-        itemList.add(new QnAList("q5", "a5"));
-
-        cardAdapter = new MyCardAdapter(this.context, itemList, onClickItem);
+        cardAdapter = new MyCardAdapter(this.context, qnaList);
         recyclerView.setAdapter(cardAdapter);
 
         MyListDecoration decoration = new MyListDecoration();
         recyclerView.addItemDecoration(decoration);
     }
 
-    private View.OnClickListener onClickItem = new View.OnClickListener() {
+
+    private View.OnClickListener onClickHash = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             String str = (String) v.getTag();
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
-
-            startActivity(intent);
         }
     };
 
+    @Override
+    public void onRefresh() {
+        if(qnaList.size() > 0) {
+            ArrayList<QnAList> tmp = new ArrayList<>();
+            for (QnAList item : qnaList) {
+                if (searchData != null && !item.getQuestion().equals(searchData)) {
+                    tmp.add(item);
+                }
+            }
+            for(QnAList item : tmp){
+                qnaList.remove(item);
+            }
+        } else {
+            initQnAList();
+        }
+        cardAdapter = new MyCardAdapter(this.context, qnaList);
+        recyclerView.setAdapter(cardAdapter);
+        swipeRefreshView.setRefreshing(false);
+    }
 }
