@@ -1,6 +1,6 @@
 package deu.cse.tos;
 
-import android.animation.Animator;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,7 +47,6 @@ public class TimerActivity extends AppCompatActivity {
         animationView.setVisibility(View.INVISIBLE);
         animationView = findViewById(R.id.tooth_top);
         animationView.setVisibility(View.VISIBLE);
-
     }
 
 

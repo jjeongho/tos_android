@@ -37,8 +37,10 @@ public class VideoActivity extends AppCompatActivity {
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             public void onPrepared(MediaPlayer mp) {
+                textView.setText("양치를 시작합니다!!");
                 videoView.start();           // start the video
                 videoView.setVisibility(View.VISIBLE);
+
             }
 
         });
@@ -72,35 +74,19 @@ public class VideoActivity extends AppCompatActivity {
                 public void run() {
                     counter++;
                     videobar.setProgress(counter);
-
                     if (counter == 100)
                         t.cancel();
                 }
 
         } ;
 
-        t.schedule(tt, 10, 117);
+        t.schedule(tt, 10, 120);
 
     }
 
 }
 
-//        Intent i = new Intent(this, SelfCheckActivity.class);
 
-//        imageview.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                startActivity(i);
-//
-//            }
-//
-//            @Override
-//            public void onTouch(View view) {
-//
-//
-//            }
-//
-//        });
 
 
 
