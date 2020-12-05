@@ -2,6 +2,7 @@ package deu.cse.tos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,13 +12,22 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.security.keystore.KeyNotYetValidException;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -42,12 +52,17 @@ public class QnAFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyHashAdapter hashAdapter;
     private MyCardAdapter cardAdapter;
+    private SwipeRefreshLayout swipeRefreshView;
+    private ImageButton btnSearch;
+    private EditText searchEdit;
+
     private Context context;
     private Intent intent;
     private Intent qnaIntent;
 
     private ArrayList<String> hashList = new ArrayList<>();
     private ArrayList<QnAList> qnaList = new ArrayList<>();
+    private String searchData;
 
     public QnAFragment() {
         // Required empty public constructor
@@ -91,30 +106,12 @@ public class QnAFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        initActivity();
-        this.intent = new Intent(getActivity(), ShowQnAActivity.class);
-        this.qnaIntent = new Intent(getActivity(), ShowQnAActivity.class);
-        this.context = container.getContext();
-        return inflater.inflate(R.layout.fragment_qna, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initHashTag(view);
-        initCard(view);
-    }
-
-    private void initHashTag(View view){
-        recyclerView = view.findViewById(R.id.hashtag);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        qnaList.add(new QnAList("q1", "a1"));
+        qnaList.add(new QnAList("q2", "a2"));
+        qnaList.add(new QnAList("q3", "a3"));
+        qnaList.add(new QnAList("q4", "a4"));
+        qnaList.add(new QnAList("q5", "a5"));
 
         hashList.add("0");
         hashList.add("1");
@@ -128,6 +125,85 @@ public class QnAFragment extends Fragment {
         hashList.add("9");
         hashList.add("10");
         hashList.add("testing~~~");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_qna, container, false);
+
+        initActivity();
+        this.intent = new Intent(getActivity(), ShowQnAActivity.class);
+        this.qnaIntent = new Intent(getActivity(), ShowQnAActivity.class);
+        this.context = container.getContext();
+        this.swipeRefreshView = view.findViewById(R.id.refresh);
+        this.recyclerView = view.findViewById(R.id.hashtag);
+        this.searchEdit = (EditText) view.findViewById(R.id.search_text);
+        this.btnSearch = (ImageButton) view.findViewById(R.id.btn_search_question);
+        this.btnSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                searchData = searchEdit.getText().toString();
+                if (searchData != null) {
+                    Toast.makeText(context, searchData, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        this.searchEdit.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    searchData = searchEdit.getText().toString();
+                    if (searchData != null) {
+                        Toast.makeText(context, searchData, Toast.LENGTH_SHORT).show();
+                    }
+                } else if (keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN){
+
+                }
+                return true;
+            }
+        });
+//        this.searchEdit.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initHashTag(view);
+        initCard(view);
+
+        swipeRefreshView.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+
+                    }
+                }
+        );
+    }
+
+    private void initHashTag(View view){
+        recyclerView = view.findViewById(R.id.hashtag);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
 
         hashAdapter = new MyHashAdapter(this.context, hashList, onClickHash);
         recyclerView.setAdapter(hashAdapter);
@@ -141,12 +217,6 @@ public class QnAFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        qnaList.add(new QnAList("q1", "a1"));
-        qnaList.add(new QnAList("q2", "a2"));
-        qnaList.add(new QnAList("q3", "a3"));
-        qnaList.add(new QnAList("q4", "a4"));
-        qnaList.add(new QnAList("q5", "a5"));
-
         cardAdapter = new MyCardAdapter(this.context, qnaList);
         recyclerView.setAdapter(cardAdapter);
 
@@ -159,21 +229,11 @@ public class QnAFragment extends Fragment {
         public void onClick(View v) {
             String str = (String) v.getTag();
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
-
-            startActivity(intent);
+//            해시태그 누르면 qnaList 수정해서 initHashTag 다시해보자...
+//            for(QnAList item:qnaList){
+//
+//            }
+            qnaList.add(new QnAList("test1", "test2"));
         }
     };
-
-    private CardView.OnClickListener onClickQnA = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            String str = (String) v.getTag();
-            Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
-
-//            qnaIntent.putExtra("question", str);
-//            startActivity(qnaIntent);
-        }
-    };
-
 }
