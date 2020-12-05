@@ -1,5 +1,7 @@
 package deu.cse.tos;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -16,8 +18,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -40,9 +45,15 @@ public class InformationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button button1;
+    private Intent intent1;
+
     Spinner spinner;
     BarChart chart2;
     ImageView image;
+    TextView textView12,textView13,textView14;
+
     public InformationFragment() {
         // Required empty public constructor
     }
@@ -90,9 +101,22 @@ public class InformationFragment extends Fragment {
 
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        this.intent1 = new Intent(getActivity(), BrushListActivity.class);
+        this.button1 = (Button) view.findViewById(R.id.btn_oral_list);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent1);
+            }
+
+        });
+
 
         //chartbar
         BarChart mBarChart = (BarChart) getActivity().findViewById(R.id.barchart);
@@ -104,8 +128,11 @@ public class InformationFragment extends Fragment {
         mBarChart.addBar(new BarModel("MAY",60f, 0xFF98BFBD));
         mBarChart.addBar(new BarModel("JUNE",35,  0xFF98BFBD));
         mBarChart.addBar(new BarModel("JULY",50f, 0xFF98BFBD));
-        mBarChart.addBar(new BarModel("AUG",60f,  0xFF98BFBD));
-
+        mBarChart.addBar(new BarModel("AUG",20f,  0xFF98BFBD));
+        mBarChart.addBar(new BarModel("SEP",30f,  0xFF98BFBD));
+        mBarChart.addBar(new BarModel("OCT",60f,  0xFF98BFBD));
+        mBarChart.addBar(new BarModel("NOV",70f,  0xFF98BFBD));
+        mBarChart.addBar(new BarModel("DEC",80f,  0xFF98BFBD));
         mBarChart.bringToFront();
         mBarChart.startAnimation();
 
@@ -131,10 +158,13 @@ public class InformationFragment extends Fragment {
 
         //Hooks
         image = getActivity().findViewById(R.id.image_view);
-
-
-
         image.setAnimation(bottomAnim);
+        textView12 = getActivity().findViewById(R.id.textView12);
+        textView12.setAnimation(bottomAnim);
+        textView13 = getActivity().findViewById(R.id.textView13);
+        textView13.setAnimation(bottomAnim);
+        textView14 = getActivity().findViewById(R.id.textView14);
+        textView14.setAnimation(bottomAnim);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
