@@ -2,6 +2,7 @@ package deu.cse.tos;
 
 import android.app.DatePickerDialog;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +27,8 @@ public class AddBrushListActivity extends AppCompatActivity {
     private RadioGroup rg;
     private EditText et;
     private DatePickerDialog datePickerDialog;
-    private int mYear, mMonth, mDay;
+    private TextView userName, itemName, usingDate;
+    private Intent previousIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,11 @@ public class AddBrushListActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 try {
                     Date d = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                    et.setText(new StringBuilder().append(year).append("-").append(monthOfYear + 1).append("-").append(dayOfMonth).append(" "));
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    //et.setText(new StringBuilder().append(year).append("-").append(monthOfYear + 1).append("-").append(dayOfMonth).append(" "));
+                    et.setText(formatter.format(d));
+                    long diff = new Date().getTime() - d.getTime();
+                    usingDate.setText(Long.toString(diff/(24*60*60*1000)));
                 } catch (Exception e) {
                     // TODO: handle exception
                     e.printStackTrace();
@@ -60,7 +67,9 @@ public class AddBrushListActivity extends AppCompatActivity {
 
         datePickerDialog.getDatePicker().setCalendarViewShown(false);
         datePickerDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
+        userName = findViewById(R.id.tv_name);
+        itemName = findViewById(R.id.tv_list_item_name);
+        usingDate = findViewById(R.id.tv_date);
         et = findViewById(R.id.editTextDate);
         et.setTextIsSelectable(true);
         et.setShowSoftInputOnFocus(false);
@@ -69,6 +78,8 @@ public class AddBrushListActivity extends AppCompatActivity {
         rb2 = (RadioButton) findViewById(R.id.radioButton2);
         rb3 = (RadioButton) findViewById(R.id.radioButton3);
         rb4 = (RadioButton) findViewById(R.id.radioButton4);
+
+        updateTextView();
         et.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,23 +96,29 @@ public class AddBrushListActivity extends AppCompatActivity {
                 rb4.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                 switch (i) {
                     case R.id.radioButton1:
-                        Toast.makeText(AddBrushListActivity.this, rb1.getTag().toString(), Toast.LENGTH_LONG).show();
+                        itemName.setText(rb1.getTag().toString());
                         rb1.setTextColor(getResources().getColor(R.color.white));
                         break;
                     case R.id.radioButton2:
-                        Toast.makeText(AddBrushListActivity.this, rb2.getTag().toString(), Toast.LENGTH_LONG).show();
+                        itemName.setText(rb2.getTag().toString());
                         rb2.setTextColor(getResources().getColor(R.color.white));
                         break;
                     case R.id.radioButton3:
-                        Toast.makeText(AddBrushListActivity.this, rb3.getTag().toString(), Toast.LENGTH_LONG).show();
+                        itemName.setText(rb3.getTag().toString());
                         rb3.setTextColor(getResources().getColor(R.color.white));
                         break;
                     case R.id.radioButton4:
-                        Toast.makeText(AddBrushListActivity.this, rb4.getTag().toString(), Toast.LENGTH_LONG).show();
+                        itemName.setText(rb4.getTag().toString());
                         rb4.setTextColor(getResources().getColor(R.color.white));
                         break;
                 }
             }
         });
+    }
+    public void updateTextView() {
+        Intent previousIntent = getIntent();
+        userName.setText("--");
+        itemName.setText(previousIntent.getStringExtra("itemName"));
+        usingDate.setText("--");
     }
 }
