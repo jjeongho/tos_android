@@ -6,30 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <Button
-        android:id="@+id/btn_register2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="88dp"
-        android:background="@drawable/rectangle_31"
-        android:fontFamily="@font/nanumsquareb"
-        android:text="@string/enter"
-        android:textColor="@color/browser_actions_bg_grey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barchart2"
-        app:layout_constraintVertical_bias="0.609" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +36,8 @@
                 android:id="@+id/tv_static_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquareeb"
-                android:text="@string/static_text2"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="@string/static_text7"
                 android:textColor="@color/ssamocolor"
                 android:textSize="36sp" />
         </LinearLayout>
@@ -70,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquareeb"
-                android:text="칫솔"
+                android:text="구강점수"
                 android:textColor="@color/ssamocolor"
                 android:textSize="36sp" />
 
@@ -81,7 +63,7 @@
                 android:layout_marginEnd="248dp"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/nanumsquarer"
-                android:text="@string/static_text3"
+                android:text="가"
                 android:textColor="@color/ssamocolor"
                 android:textSize="36sp" />
 
@@ -97,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquareeb"
-                android:text="38"
+                android:text="10"
                 android:textColor="@color/ssamocolor"
                 android:textSize="36sp" />
 
@@ -106,13 +88,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquarer"
-                android:text="@string/static_text4"
+                android:text="점 상승했습니다"
                 android:textColor="@color/ssamocolor"
                 android:textSize="36sp" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/rectangle_31"
+        android:fontFamily="@font/nanumsquareb"
+        android:text="@string/enter"
+        android:textColor="@color/browser_actions_bg_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barchart2"
+        app:layout_constraintVertical_bias="0.609" />
 
     <org.eazegraph.lib.charts.BarChart
         android:id="@+id/barchart2"
@@ -136,7 +136,6 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/nanumsquareeb"
         android:text="오늘의 양치 점수"
@@ -145,8 +144,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
