@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     InformationFragment informationFragement = new InformationFragment();
     CalendarFragment calendarFragement = new CalendarFragment();
 
+
 //    private void initActivity() {
 //        Window window = getWindow();
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
