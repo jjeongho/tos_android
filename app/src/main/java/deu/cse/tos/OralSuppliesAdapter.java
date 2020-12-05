@@ -52,6 +52,10 @@ public class OralSuppliesAdapter extends RecyclerView.Adapter<OralSuppliesAdapte
         notifyDataSetChanged();
     }
 
+    public OralSupplies getItem(int positon) {
+        return items.get(positon);
+    }
+
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView list_remaining_date, list_item_name, list_recommended_date;
         private ImageButton imageButton;
