@@ -144,6 +144,8 @@ public class MainFragment extends Fragment {
 
                     textview3.setText(data.getNickname());
                     textview4.setText("Level "+data.getLevel());
+
+                    UserAccount.getInstance().setNickName(data.getNickname());
                     Log.d("UserDTO",data.toString());
                 }
             }

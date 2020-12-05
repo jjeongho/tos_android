@@ -3,7 +3,7 @@ package deu.cse.tos;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -21,17 +22,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BrushListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private OralSuppliesAdapter oralSuppliesAdapter;
-    private ArrayList<OralSupplies> items;
+    private ArrayList<OralSupplies> oralItems;
     private Intent nextIntent;
     private FloatingActionButton btn;
     private Toolbar toolbar;
     private ActionBar actionBar;
+    private Retrofit retrofit;
+    private List<BrushListDTO> brushListDTOList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Window window = getWindow();
@@ -49,17 +66,42 @@ public class BrushListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_brushlist);
 
         btn =  findViewById(R.id.floatingActionButton);
-        items = new ArrayList<>();
-        oralSuppliesAdapter = new OralSuppliesAdapter(this, items, onClickItem);
+        oralItems = new ArrayList<>();
+        oralSuppliesAdapter = new OralSuppliesAdapter(this, oralItems, onClickItem);
         createRecyclerView();
         // OralSupplies 객체 생성
-        items.add(new OralSupplies(38, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(39, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(40, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(41, "치약", "2020년 12월 25일"));
+//        items.add(new OralSupplies(38, "칫솔", "2020년 12월 25일"));
+//        items.add(new OralSupplies(39, "칫솔", "2020년 12월 25일"));
+//        items.add(new OralSupplies(40, "칫솔", "2020년 12월 25일"));
+//        items.add(new OralSupplies(41, "치약", "2020년 12월 25일"));
         oralSuppliesAdapter.notifyDataSetChanged();
         nextIntent = new Intent(this, AddBrushListActivity.class);
 
+        //
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://113.198.235.232:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitToothService retrofitToothService = retrofit.create(RetrofitToothService.class);
+        HashMap<String, Object> input = new HashMap<>();
+        input.put("hash_key",UserAccount.getInstance().getHash_key());
+        retrofitToothService.postBrushListSelectResult(input).enqueue(new Callback <BrushListDTO>() {
+
+            @Override
+            public void onResponse(Call<BrushListDTO> call, Response<BrushListDTO> response) {
+                BrushListDTO data = response.body();
+                //List<BrushListDTO.BrushDTO> items = data.getData();
+                //Log.d("TEST", data.getData().get(0).toString());
+                for (BrushListDTO.BrushDTO item: data.getData()) {
+                    oralItems.add(new OralSupplies(item.remain_recommend_date, item.item_name, item.recommend_date));
+                    oralSuppliesAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BrushListDTO> call, Throwable t) {
+            }
+        });
         btn.setOnClickListener((view)-> {
             nextIntent.putExtra("remainingDate", "--");
             nextIntent.putExtra("itemName", "--");
