@@ -1,5 +1,6 @@
 package deu.cse.tos;
 
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,9 +22,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,7 +59,18 @@ public class MainFragment extends Fragment {
 
     }
 
+    private int returnToothRes(int count) {
 
+        switch(count) {
+            case 0:
+                return R.drawable.group_240;
+            case 1:
+                return R.drawable.group_242;
+            default:
+                return R.drawable.group_239;
+        }
+
+    }
     private void initActivity() {
         // MAIN SET UP Navigation Bar & Status Bar
         Window window = getActivity().getWindow();
@@ -97,6 +110,7 @@ public class MainFragment extends Fragment {
 
 
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -140,14 +154,66 @@ public class MainFragment extends Fragment {
         });
 
 
+        retrofitService.postToothResult(input).enqueue(new Callback<ToothInfoDTO>() {
+            @Override
+            public void onResponse(Call<ToothInfoDTO> call, Response<ToothInfoDTO> response) {
+                if(response.isSuccessful()) {
+                    ToothInfoDTO data = response.body();
+
+
+                    TextView textview5 = getActivity().findViewById(R.id.textView5);
+                    ImageView imageView4 = getActivity().findViewById(R.id.imageView4);
+                    ImageView imageView5 = getActivity().findViewById(R.id.imageView5);
+                    ImageView imageView6 = getActivity().findViewById(R.id.imageView6);
+                    ImageView imageView7 = getActivity().findViewById(R.id.imageView7);
+
+                    if(!data.getDifftime().equals("0")) {
+                        textview5.setText(data.getDifftime()+" 시간 전에 양치했어요");
+                    }
+
+                    if(!data.getMorning_time().equals("0")) {
+
+                        imageView4.setImageResource(returnToothRes(data.getMorning_count()));
+                    }
+                    else if(data.getMorning_time().equals("0"))
+                        imageView4.setImageResource(R.drawable.group_241);
+
+                    if(!data.getAfternoon_time().equals("0")) {
+                        imageView5.setImageResource(returnToothRes(data.getAfternoon_count()));
+                    }
+                    else if(data.getAfternoon_time().equals("0"))
+                        imageView5.setImageResource(R.drawable.group_241);
+
+                    if(!data.getDinner_time().equals("0")) {
+                        imageView6.setImageResource(returnToothRes(data.getDinner_count()));
+                    }
+                    else if(data.getDinner_time().equals("0"))
+                        imageView6.setImageResource(R.drawable.group_241);
+
+                    Log.d("Night",data.getNight_time());
+                    if(!data.getNight_time().equals("0")) {
+                        imageView7.setImageResource(returnToothRes(data.getNight_count()));
+                    }
+                    else if(data.getNight_time().equals("0"))
+                        imageView7.setImageResource(R.drawable.group_241);
+
+                    Log.d("UserDTO",data.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<ToothInfoDTO> call, Throwable t) {
+
+            }
+        });
+
+
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         initActivity();
-
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
-
-
+    
 }
