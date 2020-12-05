@@ -81,7 +81,7 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private String searchData;
     private boolean isSearch;
 
-    private Call<QnADTO> qnADTOCall;
+    private Call<QnaDTO> qnADTOCall;
     HashMap<String, Object> input = new HashMap<>();
     private Retrofit retrofit;
     private RetrofitQnAInterface retrofitQnAInterface;
@@ -190,19 +190,19 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 //        hashList.add("q3");
 //        hashList.add("testing~~~");
 //
-        retrofitQnAInterface.postQnAResult(input).enqueue(new Callback<JsonObject>() {
+        retrofitQnAInterface.postQnAResult(input).enqueue(new Callback<QnaDTO>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<QnaDTO> call, Response<QnaDTO> response) {
                 Log.d("myTest", "in onResponse");
                 if (response.isSuccessful()){
-                    JsonObject jo = response.body();
+                    QnaDTO data = response.body();
 
-                    Log.d("myTest_data", jo.get("question_name").toString());
+                    Log.d("myTest_data", data.toString());
                 }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<QnaDTO> call, Throwable t) {
                 Log.d("myTest", "Failed");
                 Log.d("throwT", Arrays.toString(t.getStackTrace()));
                 t.getStackTrace();
