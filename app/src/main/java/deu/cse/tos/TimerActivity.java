@@ -1,6 +1,7 @@
 package deu.cse.tos;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,109 +68,85 @@ public class TimerActivity extends AppCompatActivity {
         start();
 
         handler = new Handler() {
+            @SuppressLint("HandlerLeak")
             public void handleMessage(Message msg) {
                 String time = getTimeOut();
                 if (time.equals("00:00")) {
                     textView.setText("양치를 완료했어요 !!") ;
                     reset();
+<<<<<<< HEAD
                     startActivity(i);
+=======
+>>>>>>> d287470e3f73a4f895f2876d040cf59fb33ef9b5
                 }else if (time.equals("00:10")) {
                     textView.setText("혀를 10초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_front_bottom);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("00:30")) {
                     textView.setText("앞니의 안쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_top);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("00:50")) {
                     textView.setText("윗니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_front_bottom);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("01:10")) {
                     textView.setText("아랫니 치아 안쪽 부분 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_top);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("01:30")) {
                     textView.setText("아랫니 앞니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_front_bottom);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("01:50")) {
                     textView.setText("아랫니 어금니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_top);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("02:10")) {
                     textView.setText("씹는쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_front_bottom);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("02:30")) {
                     textView.setText("앞니 안쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_top);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
                 }else if (time.equals("02:50")) {
                     textView.setText("윗니 안쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_front_bottom);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
-
                 }else if (time.equals("03:10")) {
                     textView.setText("윗니 앞니를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
+                }else if (time.equals("03:30")) {
+                    textView.setText("윗니 어금니를 20초 동안 닦으세요 !!") ;
+                }else if (time.equals("00:20")) {
                     animationView.pauseAnimation();
                     animationView.setVisibility(View.INVISIBLE);
                     animationView = findViewById(R.id.tooth_top);
                     animationView.setVisibility(View.VISIBLE);
                     animationView.playAnimation();
-                }else if (time.equals("03:30")) {
-                    textView.setText("윗니 어금니를 20초 동안 닦으세요 !!") ;
+                    textView.setText("혀를 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
+                }else if (time.equals("00:40")) {
                     animationView.pauseAnimation();
                     animationView.setVisibility(View.INVISIBLE);
                     animationView = findViewById(R.id.tooth_front_bottom);
                     animationView.setVisibility(View.VISIBLE);
                     animationView.playAnimation();
+                    textView.setText("아랫니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+                }else if (time.equals("01:00")) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.INVISIBLE);
+                    animationView = findViewById(R.id.tooth_top);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
+                    textView.setText("윗니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
+
+                }else if (time.equals("01:20")) {
+                    animationView.pauseAnimation();
+                    animationView.setVisibility(View.INVISIBLE);
+                    animationView = findViewById(R.id.tooth_front_bottom);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
+                    textView.setText("어금니를 20초 동안 닦으세요 !!") ;
+                    handler.sendEmptyMessage(0);
                 }else {
                     handler.sendEmptyMessage(0);
                 }
-
-
-
             }
-
         };
 
 
