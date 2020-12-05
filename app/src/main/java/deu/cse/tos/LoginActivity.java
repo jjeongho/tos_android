@@ -1,6 +1,13 @@
 package deu.cse.tos;
 
-import android.animation.Animator;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.kakao.sdk.auth.LoginClient;
+import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.common.KakaoSdk;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.sdk.user.model.User;
+
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,15 +24,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.airbnb.lottie.LottieAnimationView;
-import com.kakao.sdk.auth.LoginClient;
-import com.kakao.sdk.auth.model.OAuthToken;
-import com.kakao.sdk.common.KakaoSdk;
-import com.kakao.sdk.user.UserApiClient;
-import com.kakao.sdk.user.model.User;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -37,13 +35,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     Animation topAnim, bottomAnim;
     ImageView image,image2;
     boolean issignin = true;
-
 
     private void init_activity() {
         Window window = getWindow();
@@ -58,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         KakaoSdk.init(this, "1c11ae1b9e8f2cfbeb1676908dfcd2da");
@@ -78,39 +75,9 @@ public class LoginActivity extends AppCompatActivity {
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
 
-        //Hooks
-        //image = findViewById(R.id.imageView2);
         image2 = findViewById(R.id.imageView);
 
-
-        //image.setAnimation(bottomAnim);
         image2.setAnimation(topAnim);
-
-        final LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.tooth_turn);
-        animationView.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                animationView.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-
-
-//        getHashKey();
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,40 +111,42 @@ public class LoginActivity extends AppCompatActivity {
                                                     if(response.isSuccessful()) {
                                                         CheckResult checkResult = response.body();
                                                         if(checkResult.getResult().equals("false")) {
-                                                                HashMap<String, Object> input = new HashMap<>();
-                                                                input.put("hash_key",UserAccount.getInstance().getHash_key().toString());
-                                                                input.put("nickname",user.getKakaoAccount().getProfile().getNickname().toString());
-                                                                if(user.getKakaoAccount().getGender().toString() == "FEMALE")
-                                                                    input.put("gender",0);
-                                                                else
-                                                                    input.put("gender",1);
+                                                            HashMap<String, Object> input = new HashMap<>();
+                                                            input.put("hash_key",UserAccount.getInstance().getHash_key().toString());
+                                                            input.put("nickname",user.getKakaoAccount().getProfile().getNickname().toString());
+                                                            input.put("profile_image",user.getKakaoAccount().getProfile().getProfileImageUrl().toString());
+                                                            input.put("thumbnail_image",user.getKakaoAccount().getProfile().getThumbnailImageUrl().toString());
+                                                            if(user.getKakaoAccount().getGender().toString() == "FEMALE")
+                                                                input.put("gender",0);
+                                                            else
+                                                                input.put("gender",1);
 
-                                                                retrofitCheckAccountInterface.postInsertUserResult(input).enqueue(new Callback<CheckResult>() {
+                                                            retrofitCheckAccountInterface.postInsertUserResult(input).enqueue(new Callback<CheckResult>() {
 
-                                                                    @Override
-                                                                    public void onResponse(Call<CheckResult> call, Response<CheckResult> response) {
-                                                                        Log.d("Signup","회원가입 성공");
-                                                                        startActivity(i);
+                                                                @Override
+                                                                public void onResponse(Call<CheckResult> call, Response<CheckResult> response) {
+                                                                    Log.d("Signup","회원가입 성공");
+                                                                    startActivity(i);
 
-                                                                    }
+                                                                }
 
-                                                                    @Override
-                                                                    public void onFailure(Call<CheckResult> call, Throwable t) {
-                                                                        Log.d("Singup","회원가입 실패");
-                                                                        t.printStackTrace();
+                                                                @Override
+                                                                public void onFailure(Call<CheckResult> call, Throwable t) {
+                                                                    Log.d("Singup","회원가입 실패");
+                                                                    t.printStackTrace();
 
-                                                                    }
-                                                                });
+                                                                }
+                                                            });
 
-                                                            }
-                                                            else {
-                                                                Log.d("Else","else");
-                                                                startActivity(i);
+                                                        }
+                                                        else {
+                                                            Log.d("Else","else");
+                                                            startActivity(i);
 
                                                         }
 
-                                                        }
                                                     }
+                                                }
 
                                                 @Override
                                                 public void onFailure(Call<CheckResult> call, Throwable t) {
