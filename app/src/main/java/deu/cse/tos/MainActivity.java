@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
     MainFragment mainFragement = new MainFragment();
     InformationFragment informationFragement = new InformationFragment();
     CalendarFragment calendarFragement = new CalendarFragment();
-
-
+    ModeFragment modeFragement = new ModeFragment();
 //    private void initActivity() {
 //        Window window = getWindow();
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -83,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.main_layout,informationFragement).commitAllowingStateLoss();
                         break;
                     case R.id.callBrush:
-
-                        startActivity(i);
+                        fragmentTransaction.replace(R.id.main_layout,modeFragement).commitAllowingStateLoss();
                         break;
                 }
                 return false;
@@ -105,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBottomNavigationView(){
-//        BottomNavigationHelper.enableNavigation(mContext, bottomNavigationView);
-//        Menu menu = bottomNavigationView.getMenu();
-//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-//        menuItem.setChecked(true);
+        BottomNavigationHelper.enableNavigation(mContext, bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 
 

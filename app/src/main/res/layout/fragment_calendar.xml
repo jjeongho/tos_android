@@ -131,47 +131,59 @@
 
         <TextView
             android:id="@+id/textView20"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/nanumsquarer"
+            android:gravity="left"
             android:letterSpacing="-0.01"
             android:text="12:10 PM"
             android:textColor="#9abcae"
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/imageView10"
+            app:layout_constraintHorizontal_bias="0.611"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/nanumsquarer"
+            android:gravity="left"
             android:letterSpacing="-0.01"
             android:text="12:10 PM"
             android:textColor="#9abcae"
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/imageView10"
+            app:layout_constraintHorizontal_bias="0.611"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
         <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
+            android:id="@+id/textview100"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/nanumsquarer"
+            android:gravity="left"
             android:letterSpacing="-0.01"
             android:text="12:10 PM"
             android:textColor="#9abcae"
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/imageView10"
+            app:layout_constraintHorizontal_bias="0.611"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
         <TextView
@@ -182,7 +194,7 @@
             android:layout_marginTop="48dp"
             android:layout_marginEnd="332dp"
             android:fontFamily="@font/nanumsquareb"
-            android:gravity="center_horizontal"
+            android:gravity="left|center_vertical"
             android:text="금요일"
             android:textColor="#715454"
             android:textSize="18sp"
@@ -262,17 +274,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textViewinit"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="28dp"
             android:fontFamily="@font/nanumsquarer"
+            android:gravity="left"
             android:letterSpacing="-0.01"
             android:text="8:10 AM"
             android:textColor="#9abcae"
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/imageView10"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

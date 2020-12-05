@@ -54,7 +54,7 @@
                 android:id="@+id/tv_static_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquarer"
+                android:fontFamily="@font/nanumsquareeb"
                 android:text="@string/static_text2"
                 android:textColor="@color/ssamocolor"
                 android:textSize="36sp" />
@@ -116,13 +116,13 @@
 
     <org.eazegraph.lib.charts.BarChart
         android:id="@+id/barchart2"
-        android:fontFamily="@font/nanumsquareb"
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="20dp"
         android:background="@color/chartbackground"
+        android:fontFamily="@font/nanumsquareb"
         android:padding="10dp"
         app:egBarWidth="20dp"
         app:egFixedBarWidth="true"
@@ -136,11 +136,17 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquarer"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/nanumsquareeb"
         android:text="오늘의 양치 점수"
         android:textColor="#ff98BFBD"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="224dp"
+        app:layout_constraintBottom_toTopOf="@+id/barchart2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
