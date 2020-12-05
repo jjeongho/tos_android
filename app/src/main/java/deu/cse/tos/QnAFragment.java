@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.security.keystore.KeyNotYetValidException;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +28,23 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +69,7 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private MyCardAdapter cardAdapter;
     private SwipeRefreshLayout swipeRefreshView;
     private ImageButton btnSearch;
+    private ImageButton btnRefresh;
     private EditText searchEdit;
 
     private Context context;
@@ -63,6 +79,12 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private ArrayList<String> hashList = new ArrayList<>();
     private ArrayList<QnAList> qnaList = new ArrayList<>();
     private String searchData;
+    private boolean isSearch;
+
+    private Call<QnADTO> qnADTOCall;
+    HashMap<String, Object> input = new HashMap<>();
+    private Retrofit retrofit;
+    private RetrofitQnAInterface retrofitQnAInterface;
 
     public QnAFragment() {
         // Required empty public constructor
@@ -106,11 +128,13 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        this.isSearch = false;
 
-//        initQnAList();
-//        initHashTagList();
-
-
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://113.198.235.232:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        retrofitQnAInterface = retrofit.create(RetrofitQnAInterface.class);
     }
 
     @Override
@@ -135,8 +159,21 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 searchData = searchEdit.getText().toString();
                 if (searchData != null) {
                     Toast.makeText(context, searchData, Toast.LENGTH_SHORT).show();
+                    isSearch = true;
                     onRefresh();
+                    searchData = null;
+                } else {
+                    isSearch = false;
+                    Toast.makeText(context, "no data", Toast.LENGTH_SHORT).show();
+                    searchData = null;
                 }
+            }
+        });
+        this.btnRefresh = (ImageButton) view.findViewById(R.id.btn_refresh);
+        this.btnRefresh.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onRefresh();
             }
         });
 
@@ -146,29 +183,44 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d("myTest", "onViewCreated");
 
-        qnaList.add(new QnAList("q1", "a1"));
-        qnaList.add(new QnAList("q2", "a2"));
-        qnaList.add(new QnAList("q3", "a3"));
-        qnaList.add(new QnAList("q4", "a4"));
-        qnaList.add(new QnAList("q5", "a5"));
+//        hashList.add("q1");
+//        hashList.add("q2");
+//        hashList.add("q3");
+//        hashList.add("testing~~~");
+//
+        retrofitQnAInterface.postQnAResult(input).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Log.d("myTest", "in onResponse");
+                if (response.isSuccessful()){
+                    JsonObject jo = response.body();
 
-        hashList.add("q1");
-        hashList.add("q2");
-        hashList.add("q3");
-        hashList.add("testing~~~");
+                    Log.d("myTest_data", jo.get("question_name").toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("myTest", "Failed");
+                Log.d("throwT", Arrays.toString(t.getStackTrace()));
+                t.getStackTrace();
+                t.getSuppressed();
+            }
+        });
 
         initHashTag(view);
         initCard(view);
     }
 
-    private void initQnAList(){
-        qnaList.add(new QnAList("q1", "a1"));
-        qnaList.add(new QnAList("q2", "a2"));
-        qnaList.add(new QnAList("q3", "a3"));
-        qnaList.add(new QnAList("q4", "a4"));
-        qnaList.add(new QnAList("q5", "a5"));
-    }
+//    private void initQnAList(){
+//        qnaList.add(new QnAList("q1", "a1"));
+//        qnaList.add(new QnAList("q2", "a2"));
+//        qnaList.add(new QnAList("q3", "a3"));
+//        qnaList.add(new QnAList("q4", "a4"));
+//        qnaList.add(new QnAList("q5", "a5"));
+//    }
 
     private void initHashTagList(){
         hashList.add("q1");
@@ -212,19 +264,26 @@ public class QnAFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     @Override
     public void onRefresh() {
-        if(qnaList.size() > 0) {
-            ArrayList<QnAList> tmp = new ArrayList<>();
-            for (QnAList item : qnaList) {
-                if (searchData != null && !item.getQuestion().equals(searchData)) {
-                    tmp.add(item);
-                }
-            }
-            for(QnAList item : tmp){
-                qnaList.remove(item);
-            }
+//        if(qnaList.size() > 0) {
+//            ArrayList<QnAList> tmp = new ArrayList<>();
+//            for (QnAList item : qnaList) {
+//                if (searchData != null && !item.getQuestion().equals(searchData)) {
+//                    tmp.add(item);
+//                }
+//            }
+//            for(QnAList item : tmp){
+//                qnaList.remove(item);
+//            }
+//        } else {
+//            initQnAList();
+//        }
+
+        if(isSearch){
+            // 검색해서 qna_list 수정
         } else {
-            initQnAList();
+            // 모든 qna_list 출력
         }
+
         cardAdapter = new MyCardAdapter(this.context, qnaList);
         recyclerView.setAdapter(cardAdapter);
         swipeRefreshView.setRefreshing(false);
