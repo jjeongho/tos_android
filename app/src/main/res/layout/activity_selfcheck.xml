@@ -15,6 +15,7 @@
         android:layout_marginBottom="88dp"
         android:background="@drawable/rectangle_31"
         android:fontFamily="@font/nanumsquareb"
+        android:onClick="submit_click"
         android:text="@string/submit"
         android:textColor="@color/browser_actions_bg_grey"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,10 +127,12 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
+            android:id="@+id/selfcheck1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:clickable="true"
             android:fontFamily="@font/nanumsquarer"
             android:text="양치를 하는데 이가 시려요."
             android:textSize="20sp" />
@@ -140,7 +143,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/checkbox_checkbox"
             android:button="@android:color/transparent"
-            android:checked="true" />
+            android:checked="false" />
     </LinearLayout>
 
 
@@ -158,10 +161,12 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
+            android:id="@+id/selfcheck2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:clickable="true"
             android:fontFamily="@font/nanumsquarer"
             android:text="양치를 하는데 이가 흔들려요."
             android:textSize="20sp" />
@@ -172,7 +177,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/checkbox_checkbox"
             android:button="@android:color/transparent"
-            android:checked="true" />
+            android:checked="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -189,10 +194,12 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
+            android:id="@+id/selfcheck3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:clickable="true"
             android:fontFamily="@font/nanumsquarer"
             android:text="양치를 하는데 이가 아파요."
             android:textSize="20sp" />
@@ -203,7 +210,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/checkbox_checkbox"
             android:button="@android:color/transparent"
-            android:checked="true" />
+            android:checked="false" />
     </LinearLayout>
 
 
@@ -221,10 +228,12 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
+            android:id="@+id/selfcheck4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:clickable="true"
             android:fontFamily="@font/nanumsquarer"
             android:text="양치를 하는데 피가 났어요."
             android:textSize="20sp" />
@@ -235,7 +244,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/checkbox_checkbox"
             android:button="@android:color/transparent"
-            android:checked="true" />
+            android:checked="false" />
     </LinearLayout>
 
     <TextView
