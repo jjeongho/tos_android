@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="38dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="88dp"
         android:background="@drawable/rectangle_31"
@@ -21,14 +22,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearcheck4" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="126dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
