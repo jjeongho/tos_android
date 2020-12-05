@@ -21,8 +21,9 @@
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:background="@drawable/background_rounding" />
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/background_rounding"
+            android:src="@drawable/qna_back"/>
 
         <TextView
             android:id="@+id/QnAText"
@@ -56,6 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@null"
+                android:singleLine="true"
+                android:lines="1"
                 android:hint="검색" />
 
         </LinearLayout>
