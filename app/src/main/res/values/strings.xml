@@ -9,7 +9,7 @@
     <string name="static_text">교체시기</string>
     <string name="static_text2">님은</string>
     <string name="static_text3">을</string>
-    <string name="static_text4">일째 사용중</string>
+    <string name="static_text4"> POINT 획득</string>
     <string name="static_text5"> 님</string>
     <string name="register">등록하기</string>
     <string name="oral_supplies">구강용품</string>
@@ -17,4 +17,5 @@
     <string name="oral_list">구강용품 관리</string>
     <string name="submit">제출하기</string>
     <string name="enter">확인</string>
+    <string name="static_text7">님의</string>
 </resources>
