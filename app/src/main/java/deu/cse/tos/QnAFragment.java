@@ -150,36 +150,6 @@ public class QnAFragment extends Fragment {
                 }
             }
         });
-        this.searchEdit.setOnKeyListener(new View.OnKeyListener(){
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    searchData = searchEdit.getText().toString();
-                    if (searchData != null) {
-                        Toast.makeText(context, searchData, Toast.LENGTH_SHORT).show();
-                    }
-                } else if (keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN){
-
-                }
-                return true;
-            }
-        });
-//        this.searchEdit.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
 
         return view;
     }
