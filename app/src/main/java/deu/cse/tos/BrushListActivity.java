@@ -5,12 +5,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,9 +28,10 @@ public class BrushListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private OralSuppliesAdapter oralSuppliesAdapter;
     private ArrayList<OralSupplies> items;
-    private OralSupplies oralSupplies;
     private Intent nextIntent;
     private FloatingActionButton btn;
+    private Toolbar toolbar;
+    private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Window window = getWindow();
@@ -43,6 +47,7 @@ public class BrushListActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brushlist);
+
         btn =  findViewById(R.id.floatingActionButton);
         items = new ArrayList<>();
         oralSuppliesAdapter = new OralSuppliesAdapter(this, items, onClickItem);
@@ -52,47 +57,25 @@ public class BrushListActivity extends AppCompatActivity {
         items.add(new OralSupplies(39, "칫솔", "2020년 12월 25일"));
         items.add(new OralSupplies(40, "칫솔", "2020년 12월 25일"));
         items.add(new OralSupplies(41, "치약", "2020년 12월 25일"));
-        items.add(new OralSupplies(42, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(45, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(49, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(34, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(38, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(12, "칫솔", "2020년 12월 25일"));
-        items.add(new OralSupplies(190, "칫솔", "2020년 12월 25일"));
         oralSuppliesAdapter.notifyDataSetChanged();
         nextIntent = new Intent(this, AddBrushListActivity.class);
 
         btn.setOnClickListener((view)-> {
+            nextIntent.putExtra("remainingDate", "--");
+            nextIntent.putExtra("itemName", "--");
+            nextIntent.putExtra("recommendedDate", "--");
             startActivity(nextIntent);
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        ActionBar actionBar = getSupportActionBar();
-
-        // Custom Actionbar를 사용하기 위해 CustomEnabled을 true 시키고 필요 없는 것은 false 시킨다
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);            //액션바 아이콘을 업 네비게이션 형태로 표시합니다.
-        actionBar.setDisplayShowTitleEnabled(false);        //액션바에 표시되는 제목의 표시유무를 설정합니다.
-        actionBar.setDisplayShowHomeEnabled(false);            //홈 아이콘을 숨김처리합니다.
-
-
-        //layout을 가지고 와서 actionbar에 포팅을 시킵니다.
-        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View actionbar = inflater.inflate(R.layout.actionbar, null);
-        actionBar.setCustomView(actionbar);
-
-        //액션바 양쪽 공백 없애기
-        Toolbar parent = (Toolbar)actionbar.getParent();
-        parent.setContentInsetsAbsolute(0,0);
-        return true;
+        initActionBar();
     }
 
     private View.OnClickListener onClickItem = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(BrushListActivity.this, v.getTag().toString(), Toast.LENGTH_SHORT).show();
+            OralSupplies item  = oralSuppliesAdapter.getItem((int)v.getTag());
+            nextIntent.putExtra("remainingDate", "--");
+            nextIntent.putExtra("itemName", item.getItemName());
+            nextIntent.putExtra("recommendedDate", "--");
             startActivity(nextIntent);
         }
     };
@@ -103,5 +86,36 @@ public class BrushListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(oralSuppliesAdapter);
         recyclerView.setHasFixedSize(true);
+    }
+
+    public void initActionBar(){
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_customactionbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logout:
+                break;
+            case R.id.account:
+                break;
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
