@@ -144,6 +144,8 @@ public class MainFragment extends Fragment {
 
                     textview3.setText(data.getNickname());
                     textview4.setText("Level "+data.getLevel());
+                    UserAccount.getInstance().setNickname(data.getNickname());
+
                     Log.d("UserDTO",data.toString());
                 }
             }
@@ -171,7 +173,7 @@ public class MainFragment extends Fragment {
                         textview5.setText(data.getDifftime()+" 시간 전에 양치했어요");
                     }
                     else {
-                        textview5.setText("아직까지 양치기록이 없어요");
+                        textview5.setText("방금 전 양치했어요");
                     }
 
                     if(!data.getMorning_time().equals("0")) {

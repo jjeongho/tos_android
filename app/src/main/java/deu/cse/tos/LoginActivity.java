@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onResponse(Call<CheckResult> call, Response<CheckResult> response) {
                                                                     Log.d("Signup","회원가입 성공");
+
                                                                     startActivity(i);
 
                                                                 }
