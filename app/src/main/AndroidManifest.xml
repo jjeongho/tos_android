@@ -18,26 +18,17 @@
         android:supportsRtl="true"
         android:theme="@style/TosTheme">
 
-        <activity android:name=".LoginActivity">
-        </activity>
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".VideoActivity">
-        </activity>
-        <activity android:name=".AddBrushListActivity">
-        </activity>
-        <activity android:name=".BrushListActivity"/>
-        <activity android:name=".TimerActivity">
-        </activity>
-        <activity android:name=".ShowQnAActivity">
-        </activity>
-        <activity android:name=".SelfCheckActivity">
-        </activity>
-        <activity android:name=".ModeActivity">
-        </activity>
-        <activity android:name=".CheckResultActivity">
-        </activity>
-
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".VideoActivity"/>
+        <activity android:name=".BrushListActivity" />
+        <activity android:name=".AddBrushListActivity"/>
+        <activity android:name=".TimerActivity"/>
+        <activity android:name=".ShowQnAActivity"/>
+        <activity android:name=".ModeActivity"/>
+        <activity android:name=".SelfCheckActivity"/>
+        <activity android:name=".CheckResultActivity"/>
+        <activity android:name=".NotLoginActivity"/>
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

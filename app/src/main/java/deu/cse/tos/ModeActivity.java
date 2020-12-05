@@ -4,14 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,7 +30,7 @@ public class ModeActivity extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mode);
+        setContentView(R.layout.fragment_mode);
 
         ImageButton button1 = (ImageButton) findViewById(R.id.imageButtonmode1);
         ImageButton button2 = (ImageButton) findViewById(R.id.imageButtonmode2);

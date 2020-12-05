@@ -2,6 +2,7 @@ package deu.cse.tos;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -54,6 +56,15 @@ public class CheckResultActivity extends AppCompatActivity {
 
         mBarChart2.bringToFront();
         mBarChart2.startAnimation();
+        Intent i = new Intent(this, MainActivity.class);
+        Button button=findViewById(R.id.btn_register2);
+        button.setOnClickListener(new View.OnClickListener() {//버튼 이벤트 처리
+            @Override
+            public void onClick(View view) {
+                startActivity(i);
+                System.out.println("화면 전환 성공");
+            }
+        });
 
     }
 

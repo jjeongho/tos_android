@@ -170,6 +170,9 @@ public class MainFragment extends Fragment {
                     if(!data.getDifftime().equals("0")) {
                         textview5.setText(data.getDifftime()+" 시간 전에 양치했어요");
                     }
+                    else {
+                        textview5.setText("아직까지 양치기록이 없어요");
+                    }
 
                     if(!data.getMorning_time().equals("0")) {
 
