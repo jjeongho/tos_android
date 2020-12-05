@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +20,18 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
+
+import java.util.HashMap;
 
 public class CheckResultActivity extends AppCompatActivity {
     private Context mContext = CheckResultActivity.this;
@@ -48,14 +56,38 @@ public class CheckResultActivity extends AppCompatActivity {
 
         BarChart mBarChart2 = (BarChart) findViewById(R.id.barchart2);
 
-        mBarChart2.addBar(new BarModel("아침",70f, 0xFF98BFBD));
-        mBarChart2.addBar(new BarModel("점심",40f,  0xFF98BFBD));
-        mBarChart2.addBar(new BarModel("저녁",45f, 0xFF98BFBD));
-        mBarChart2.addBar(new BarModel("자기 전",55f, 0xFFDADADA));
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://113.198.235.232:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+        HashMap<String, Object> input = new HashMap<>();
+
+        input.put("hash_key",UserAccount.getInstance().getHash_key());
+        retrofitService.postTodayGraphResult(input).enqueue(new Callback<TodayGraphDTO>() {
+            @Override
+            public void onResponse(Call<TodayGraphDTO> call, Response<TodayGraphDTO> response) {
+                if(response.isSuccessful()) {
+                    TodayGraphDTO data = response.body();
+
+                    mBarChart2.addBar(new BarModel("아침",data.getMorning_count(), 0xFF98BFBD));
+                    mBarChart2.addBar(new BarModel("점심",data.getAfternoon_count(),  0xFF98BFBD));
+                    mBarChart2.addBar(new BarModel("저녁",data.getDinner_count(), 0xFF98BFBD));
+                    mBarChart2.addBar(new BarModel("자기 전",data.getNight_count(), 0xFFDADADA));
+                    mBarChart2.bringToFront();
+                    mBarChart2.startAnimation();
 
 
-        mBarChart2.bringToFront();
-        mBarChart2.startAnimation();
+                    Log.d("UserDTO",data.toString());
+                }
+            }
+            @Override
+            public void onFailure(Call<TodayGraphDTO> call, Throwable t) {
+
+            }
+        });
+
         Intent i = new Intent(this, MainActivity.class);
         Button button=findViewById(R.id.btn_register2);
         button.setOnClickListener(new View.OnClickListener() {//버튼 이벤트 처리

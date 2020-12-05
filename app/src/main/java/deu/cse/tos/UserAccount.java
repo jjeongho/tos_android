@@ -2,6 +2,8 @@ package deu.cse.tos;
 
 public class UserAccount {
     private String hash_key;
+    private String nickname;
+
     private static UserAccount singleton = new UserAccount();
     private UserAccount() {
 
@@ -17,6 +19,14 @@ public class UserAccount {
 
     public void setHash_key(String hash_key) {
         this.hash_key = hash_key;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     @Override
