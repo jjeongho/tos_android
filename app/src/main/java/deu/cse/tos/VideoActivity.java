@@ -31,14 +31,16 @@ public class VideoActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, SelfCheckActivity.class);
         TextView textView = (TextView) findViewById(R.id.video_mode_txt);
-        Uri uri = Uri.parse("android.resource://deu.cse.tos/" + R.raw.video);
+        Uri uri = Uri.parse("android.resource://deu.cse.tos/" + R.raw.test_video);
         VideoView videoView = (VideoView) findViewById(R.id.videoview);
         videoView.setVideoURI(uri);
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             public void onPrepared(MediaPlayer mp) {
+                textView.setText("양치를  진행하세요 !!");
                 videoView.start();           // start the video
                 videoView.setVisibility(View.VISIBLE);
+
             }
 
         });
@@ -46,7 +48,7 @@ public class VideoActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                textView.setText("양치가 끝났어요 !!");
+                textView.setText("양치가 끝났습니다 !!");
                 startActivity(i);
             }
         });
@@ -72,35 +74,19 @@ public class VideoActivity extends AppCompatActivity {
                 public void run() {
                     counter++;
                     videobar.setProgress(counter);
-
                     if (counter == 100)
                         t.cancel();
                 }
 
         } ;
 
-        t.schedule(tt, 10, 117);
+        t.schedule(tt, 10, 85);
 
     }
 
 }
 
-//        Intent i = new Intent(this, SelfCheckActivity.class);
 
-//        imageview.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                startActivity(i);
-//
-//            }
-//
-//            @Override
-//            public void onTouch(View view) {
-//
-//
-//            }
-//
-//        });
 
 
 
