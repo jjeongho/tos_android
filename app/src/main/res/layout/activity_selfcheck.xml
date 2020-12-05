@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/rectangle_31"
         android:fontFamily="@font/nanumsquareb"
         android:onClick="submit_click"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="126dp"
+        android:layout_marginTop="106dp"
         android:layout_marginEnd="28dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,44 +148,11 @@
 
 
     <LinearLayout
-        android:id="@+id/linearcheck2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginRight="49dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <TextView
-            android:id="@+id/selfcheck2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:fontFamily="@font/nanumsquarer"
-            android:text="양치를 하는데 이가 흔들려요."
-            android:textSize="20sp" />
-
-        <CheckBox
-            android:id="@+id/checkbox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/checkbox_checkbox"
-            android:button="@android:color/transparent"
-            android:checked="false" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearcheck3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="49dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="182dp"
         android:layout_marginRight="49dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"

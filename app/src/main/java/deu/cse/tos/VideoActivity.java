@@ -49,7 +49,7 @@ public class VideoActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, SelfCheckActivity.class);
         TextView textView = (TextView) findViewById(R.id.video_mode_txt);
-        Uri uri = Uri.parse("android.resource://deu.cse.tos/" + R.raw.test_video);
+        Uri uri = Uri.parse("android.resource://deu.cse.tos/" + R.raw.video_test1);
         VideoView videoView = (VideoView) findViewById(R.id.videoview);
         videoView.setVideoURI(uri);
 
@@ -100,7 +100,7 @@ public class VideoActivity extends AppCompatActivity {
 
         } ;
 
-        t.schedule(tt, 10, 85);
+        t.schedule(tt, 10, 94);
 
     }
 

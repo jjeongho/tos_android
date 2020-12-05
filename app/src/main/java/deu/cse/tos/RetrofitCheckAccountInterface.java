@@ -16,6 +16,4 @@ public interface RetrofitCheckAccountInterface {
     @POST("register/user")
     Call<CheckResult> postInsertUserResult(@FieldMap HashMap<String,Object> param);
 
-
-
 }
