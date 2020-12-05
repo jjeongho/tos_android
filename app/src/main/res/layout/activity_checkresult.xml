@@ -5,6 +5,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <Button
+        android:id="@+id/btn_register2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/rectangle_31"
+        android:fontFamily="@font/nanumsquareb"
+        android:text="@string/enter"
+        android:textColor="@color/browser_actions_bg_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barchart2"
+        app:layout_constraintVertical_bias="0.609" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -94,35 +113,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="371dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="548dp"
-        android:background="@drawable/ssambutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="46dp"
-        android:layout_height="31dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="375dp"
-        android:layout_marginTop="572dp"
-        android:layout_marginEnd="300dp"
-        android:fontFamily="@font/nanumsquareeb"
-        android:text="확인"
-        android:textColor="#ffffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
 
     <org.eazegraph.lib.charts.BarChart
         android:id="@+id/barchart2"

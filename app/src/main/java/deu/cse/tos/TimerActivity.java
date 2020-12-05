@@ -59,12 +59,12 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         init();
+        Intent i = new Intent(this, SelfCheckActivity.class);
         TextView textView = (TextView) findViewById(R.id.timer_mode_txt) ;
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         progressBar = findViewById(R.id.progressBar);
         time_out_min = findViewById(R.id.time_out_min);
         start();
-
 
         handler = new Handler() {
             public void handleMessage(Message msg) {
@@ -72,11 +72,7 @@ public class TimerActivity extends AppCompatActivity {
                 if (time.equals("00:00")) {
                     textView.setText("양치를 완료했어요 !!") ;
                     reset();
-                    animationView.pauseAnimation();
-                    animationView.setVisibility(View.INVISIBLE);
-                    animationView = findViewById(R.id.tooth_top);
-                    animationView.setVisibility(View.VISIBLE);
-                    animationView.playAnimation();
+                    startActivity(i);
                 }else if (time.equals("00:10")) {
                     textView.setText("혀를 10초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
