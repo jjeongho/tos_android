@@ -13,4 +13,5 @@
     <string name="register">등록하기</string>
     <string name="oral_supplies">구강용품</string>
     <string name="buy_date">구매일자</string>
+    <string name="oral_list">구강용품 관리</string>
 </resources>
