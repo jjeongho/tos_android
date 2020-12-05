@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,9 @@ public class MainFragment extends Fragment {
     public MainFragment() {
         // Required empty public constructor
 
+    }
+    public static MainFragment newInstance() {
+        return new MainFragment();
     }
 
     // TODO: Rename and change types and number of parameters
@@ -122,7 +126,8 @@ public class MainFragment extends Fragment {
 
             public void onClick(View view) {
                 //startActivity(i);
-                startActivity(testIntent);
+                ((MainActivity)getActivity()).replaceFragment(ModeFragment.newInstance());
+
             }
         });
 
