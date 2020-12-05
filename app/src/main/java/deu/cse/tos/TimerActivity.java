@@ -152,6 +152,10 @@ public class TimerActivity extends AppCompatActivity {
                     animationView = findViewById(R.id.tooth_top);
                     animationView.setVisibility(View.VISIBLE);
                     animationView.playAnimation();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 08203d9e7fa4fc2f52bab31ee70ea4354214264f
                 }else if (time.equals("02:50")) {
                     textView.setText("윗니 안쪽을 20초 동안 닦으세요 !!") ;
                     handler.sendEmptyMessage(0);
