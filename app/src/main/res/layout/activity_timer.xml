@@ -29,6 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@null"
+                android:editable="false"
                 android:gravity="center"
                 android:imeOptions="actionNext"
                 android:inputType="number"
@@ -36,23 +38,25 @@
                 android:maxLines="1"
                 android:selectAllOnFocus="true"
                 android:text="03"
-                android:textColor="@android:color/black"
-                android:textSize="40sp" />
+                android:textColor="#2c2626"
+                android:textSize="60sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text=":"
-                android:textColor="@android:color/black"
-                android:textSize="40sp" />
+                android:text=" : "
+                android:textColor="#2c2626"
+                android:textSize="60sp"/>
 
             <EditText
                 android:id="@+id/time_out_sec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@null"
+                android:editable="false"
                 android:gravity="center"
                 android:imeOptions="actionDone"
                 android:inputType="number"
@@ -60,8 +64,8 @@
                 android:maxLines="1"
                 android:selectAllOnFocus="true"
                 android:text="30"
-                android:textColor="@android:color/black"
-                android:textSize="40sp" />
+                android:textColor="#2c2626"
+                android:textSize="60sp" />
         </LinearLayout>
     </FrameLayout>
 
