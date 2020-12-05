@@ -10,7 +10,6 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="90dp"
@@ -98,11 +97,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="215dp">
-=======
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MainActivity">
->>>>>>> d287470e3f73a4f895f2876d040cf59fb33ef9b5
 
         <Spinner
             android:id="@+id/spinner"
@@ -114,37 +108,15 @@
             android:spinnerMode="dropdown"
             android:translationY="0dp" />
 
-
     </LinearLayout>
 
-<<<<<<< HEAD
 
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="368dp"
         android:layout_height="85dp"
-=======
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="250dp"
-        android:layout_weight="10"
-        android:fontFamily="@font/nanumsquareb"
-        android:text="이번 달 양치 횟수" />
-
-
-
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
->>>>>>> d287470e3f73a4f895f2876d040cf59fb33ef9b5
         android:layout_gravity="center"
         android:background="@drawable/background_rounding2"
-<<<<<<< HEAD
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
@@ -152,12 +124,6 @@
         app:layout_constraintTop_toBottomOf="@+id/barchart"
         app:layout_constraintVertical_bias="0.278"
         tools:ignore="MissingConstraints" />
-=======
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-
->>>>>>> d287470e3f73a4f895f2876d040cf59fb33ef9b5
 
     <org.eazegraph.lib.charts.BarChart
         android:id="@+id/barchart"
