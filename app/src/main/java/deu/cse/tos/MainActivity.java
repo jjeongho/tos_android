@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_layout,mainFragement).commitAllowingStateLoss();
         bottomNavigationView = findViewById(R.id.navigation);
